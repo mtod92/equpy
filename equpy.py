@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
+#github test branch_1
 
 class ChemicalReaction:
     def __init__(self, species, stoichiometry, eq_constants, mass_conservation, initial_masses):
