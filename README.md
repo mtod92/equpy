@@ -54,7 +54,7 @@ $$\Theta(x) = \left\{\begin{array}{l}
 1\textrm{ else}
 \end{array}\right.$$
 
-$$frac{[AB_2]}{([A][B]^2)} = K_1$$
+$$[AB_2] /over ([A][B]^2) = K_1$$
 
 You can also use plain \LaTeX for equations
 \begin{equation}\label{eq:fourier}
