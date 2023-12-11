@@ -1,11 +1,11 @@
 # equipy
 ---
-title: 'equpy: Python and MATLAB implementations of a fast numerical algorithm for the solution of multiple chemical equilibria'
+title: 'equpy: Python and MATLAB implementations of a fast numerical algorithm for the solution of multiple binding and chemical equilibria'
 tags:
   - Python
   - MATLAB
   - chemical equilibrium
-  - multiple species
+  - binding
   - physical chemistry
 authors:
   - name: Marco Todisco
@@ -54,11 +54,15 @@ $$\Theta(x) = \left\{\begin{array}{l}
 1\textrm{ else}
 \end{array}\right.$$
 
+$$frac{[AB_2]}{([A][B]^2)} = K_1$$
+
 You can also use plain \LaTeX for equations
 \begin{equation}\label{eq:fourier}
 \hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
 \end{equation}
 and refer to \autoref{eq:fourier} from text.
+
+[AB_2\ ]/([A] [B]^2 )=K_1
 
 # Citations
 
