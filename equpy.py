@@ -1,16 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
+from typing import List
 #github test branch_1
 
 class ChemicalReaction:
-    def __init__(self, species, stoichiometry, eq_constants, mass_conservation, initial_masses):
+    def __init__(self, species : List[str], stoichiometry, eq_constants, mass_conservation, initial_masses):
         initial_masses = np.array(initial_masses, dtype=float)
         if min(initial_masses) == 0:
             warnings.warn("Species concentrations (S) should not be set to zero, eps has been set instead. The result may not be reliable.", stacklevel=2)
             I = np.where(initial_masses == 0)[0]
             initial_masses[I] = 2.2e-16
-    
+
         self.s = species
         self.N = stoichiometry
         self.K = eq_constants
