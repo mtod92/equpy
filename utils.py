@@ -1,9 +1,10 @@
 import re, csv
 import numpy as np
 from math import floor, log10
+from typing import List, Set, Dict, Tuple
 
 
-def define_species_set(eq):
+def define_species_set(eq: List[str]) -> Set[str]:
     """
     Extract species involved in the reaction from symbolic equations
     Parameters:
@@ -26,7 +27,7 @@ def define_species_set(eq):
     return set(species_set)
 
 
-def define_reactions(eq):
+def define_reactions(eq: List[str]) -> Tuple[np.ndarray, int, Dict[str, int]]:
     """
     Converts symbolic equations defining chemical reactions to matrix form suitable for the solver
     Parameters:
@@ -69,7 +70,7 @@ def define_reactions(eq):
     return N, n, species
 
 
-def define_conservations(eq, n, species):
+def define_conservations(eq: List[str], n: int, species: Dict[str, int]) -> np.ndarray:
     """
     Converts symbolic equations defining mass conservations to matrix form suitable for the solver
     Parameters:
@@ -96,7 +97,9 @@ def define_conservations(eq, n, species):
     return M
 
 
-def eq_system_builder(eq, mass_conservation):
+def eq_system_builder(
+    eq: List[str], mass_conservation: List[str]
+) -> Tuple[np.ndarray, np.ndarray, Dict[str, int]]:
     """
     Converts symbolic equations defining chemical reactions and mass conservations to matrix form suitable for the solver
     Parameters:
@@ -110,7 +113,9 @@ def eq_system_builder(eq, mass_conservation):
     return N, C, species
 
 
-def csv_loader(filename_N, filename_C):
+def csv_loader(
+    filename_N: str, filename_C: str
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Assembles matrices suitable for the solver starting from .csv files
     """
