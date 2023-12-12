@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
-from typing import List
+from typing import List, Tuple
 
 # github test branch_1
 
@@ -10,10 +10,10 @@ class ChemicalReaction:
     def __init__(
         self,
         species: List[str],
-        stoichiometry,
-        eq_constants,
-        mass_conservation,
-        initial_masses,
+        stoichiometry: np.ndarray,
+        eq_constants: np.ndarray,
+        mass_conservation: np.ndarray,
+        initial_masses: List[int],
     ):
         initial_masses = np.array(initial_masses, dtype=float)
         if min(initial_masses) == 0:
@@ -32,7 +32,7 @@ class ChemicalReaction:
         self.result = []
         self.residuals = []
 
-    def solve(self, iter, th, w):
+    def solve(self, iter, th, w) -> Tuple[np.ndarray, List[np.ndarray]]:
         iter = int(iter)
         x0 = np.ones(np.shape(self.N)[1])
         delta = []
