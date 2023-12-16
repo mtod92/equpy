@@ -2,17 +2,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import warnings
 from typing import List, Tuple
+from utils import eq_system_builder
 
 # github test branch_1
+
+
+class EquationSystem:
+    def __init__(self, equations: List[str], mass_conservation: List[str]) -> None:
+        self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(
+            equations, mass_conservation
+        )
 
 
 class ChemicalReaction:
     def __init__(
         self,
-        species: List[str],
-        stoichiometry: np.ndarray,
+        equation_system: EquationSystem,
         eq_constants: np.ndarray,
-        mass_conservation: np.ndarray,
         initial_masses: List[int],
     ):
         initial_masses = np.array(initial_masses, dtype=float)
@@ -24,15 +30,17 @@ class ChemicalReaction:
             I = np.where(initial_masses == 0)[0]
             initial_masses[I] = 2.2e-16
 
-        self.s = species
-        self.N = stoichiometry
+        self.s = equation_system.species
+        self.N = equation_system.stoichiometry
         self.K = eq_constants
-        self.C = mass_conservation
+        self.C = equation_system.mass_conservation
         self.S = initial_masses
         self.result = []
         self.residuals = []
 
-    def solve(self, iter, th, w) -> Tuple[np.ndarray, List[np.ndarray]]:
+    def solve(
+        self, iter: int, tolerance: float, w: float
+    ) -> Tuple[np.ndarray, List[np.ndarray]]:
         iter = int(iter)
         x0 = np.ones(np.shape(self.N)[1])
         delta = []
@@ -44,7 +52,7 @@ class ChemicalReaction:
             x, delta_ = eqsolver(self.N, self.K, self.C, self.S, x, w)
             delta.append(delta_)
 
-            if delta[-1] < th * np.linalg.norm(x * 2.2e-16):
+            if delta[-1] < tolerance * np.linalg.norm(x * 2.2e-16):
                 self.result = np.exp(x)
                 self.residuals = delta
                 return np.exp(x), delta
@@ -76,7 +84,9 @@ class ChemicalReaction:
         )
 
 
-def eqsolver(N, K, C, S, x, w):
+def eqsolver(
+    N: np.ndarray, K: np.ndarray, C: np.ndarray, S: List[int], x: float, w: float
+) -> Tuple[float, float]:
     Cx = C * np.exp(x)
     W = Cx / np.sum(Cx, axis=1)[:, None]
     Ks = np.prod((W / C) ** W, axis=1) * S
