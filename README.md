@@ -83,6 +83,16 @@ In order to express such conservation of mass as a linear function of the logari
 
 $$\frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1 \label{Eq. 8}$$
 
+Then we “condense” the sum in the denominator of Eq. 8 into a product:
+$$\sum_{j=1}^n a_j[X_j] = \prod{j=1}^n (\frac{a_j[X_j]}{W_j})^{W_j} \label{Eq. 9}$$
+
+With *W* for a given species *j* part of a mass conservation relationship being equal to:
+$$W_j = \frac{a_j[X_j]}{sum_{p=1}^n a_p[X_p]} \label{Eq. 10}$$
+
+So that Eq. 8 becomes:
+$$frac{[X_i]_{tot}}{(\frac{a_1[X_1]}{W_1})^{W_1} * (\frac{a_2[X_2]}{W_2})^{W_2} * ... * (\frac{a_n[X_n]}{W_n})^{W_n}} = 1 \label{Eq. 11}$$
+
+
 # Mathematics
 
 Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
