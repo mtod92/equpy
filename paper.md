@@ -1,33 +1,23 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'equpy: Python and MATLAB implementations of a fast numerical algorithm for the solution of multiple binding and chemical equilibria'
 tags:
   - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - MATLAB
+  - chemical equilibrium
+  - binding
+  - physical chemistry
 authors:
-  - name: Adrian M. Price-Whelan
-    orcid: 0000-0000-0000-0000
-    equal-contrib: true
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
+  - name: Luca Citelli
+      affiliation: 1
+  - name: Marco Todisco
+    corresponding: true
+    orcid: 0000-0001-6627-5283
     affiliation: 2
-  - name: Author with no affiliation
-    corresponding: true # (This is how to denote the corresponding author)
-    affiliation: 3
-  - given-names: Ludwig
-    dropping-particle: van
-    surname: Beethoven
-    affiliation: 3
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Independent Researcher.
    index: 1
- - name: Institution Name, Country
+ - name: Howard Hughes Medical Institute, Department of Chemistry, The University of Chicago, Chicago, Illinois 60637, USA.
    index: 2
- - name: Independent Researcher, Country
-   index: 3
 date: 13 August 2017
 bibliography: paper.bib
 
