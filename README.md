@@ -8,12 +8,17 @@ tags:
   - binding
   - physical chemistry
 authors:
+  - name: Luca Citelli
+      affiliation: 1
   - name: Marco Todisco
+    corresponding: true
     orcid: 0000-0001-6627-5283
-    affiliation: 1
+    affiliation: 2
 affiliations:
- - name: Howard Hughes Medical Institute, Department of Chemistry, The University of Chicago, Chicago, Illinois 60637, USA.
+ - name: Independent Researcher.
    index: 1
+ - name: Howard Hughes Medical Institute, Department of Chemistry, The University of Chicago, Chicago, Illinois 60637, USA.
+   index: 2
 date: 11 December 2023
 bibliography: paper.bib
 
@@ -23,25 +28,32 @@ Determining the distribution of multiple chemical species at equilibrium for a g
 
 # Statement of need
 
-`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for `Gala` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
-`astropy.coordinates`).
+`equpy` is a Python package specialized in solving multiple chemical equilibria.
+`equpy` was designed to provide a user-friendly experience for a class-based
+implementations of the algorithm developed by Thomas Wayne Wall to handle the
+solution of mixed linear/non-linear systems of equations describing the simultaneous
+equilibration of multiple species reacting in a close system. `equpy` relies 
+heavily on numpy to handle data in matrix form and matplotlib to generate figures.
 
-`Gala` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in `Gala` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
+`equpy` was designed to be used by chemical, biological and physical/chemical
+researchers studying systems comprising multiple species reacting/interacting.
+This tool is particularly well-suited for researchers that (i) need to quickly 
+calculate equilibria with a matrix-form input, and/or (ii) cannot rely on 
+slower and more general solvers, for example when multiple kinetic traces have 
+to be integrated as the species equilibrate and/or global fits on large sets 
+of parameters have to be performed.
+
+# Introduction
+The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
+While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
+In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall1,2 for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
+
+In the first section of this work, we define the general problem, in the second section we present the general mathematical treatment and implementation of the algorithm, and finally in the last section we present practical examples, focused to readers that primarily need to apply this implementation to solve their own problem, and we discuss usage and performance of the algorithm, with attention to real case scenarios and applications for the unexperienced reader.
+
+# Problem Definition
+Let’s start with a simple example of interacting species:
+$$A + 2B &harr AB_2$$
+$$AB_2 + C &harr AB_2C$$
 
 # Mathematics
 
