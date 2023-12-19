@@ -61,21 +61,21 @@ AB_2 + C \Longleftrightarrow AB_2C
 \end{equation}
 
 And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
-\begin{equation}\label{eq:1}
+\begin{equation}\label{eq:3}
 \frac{[AB_2]}{[A][B]^2} = K_1
 \end{equation}
-\begin{equation}\label{eq:2}
+\begin{equation}\label{eq:4}
 \frac{[AB_2C]}{[AB_2][C]} = K_2
 \end{equation}
 
 And the associated mass conservations:
-\begin{equation}\label{eq:3}
+\begin{equation}\label{eq:5}
 [A]_{tot} = [A] + [AB_2] + [AB_2C]
 \end{equation}
-\begin{equation}\label{eq:4}
+\begin{equation}\label{eq:6}
 [B]_{tot} = [B] + 2[AB_2] + 2[AB_2C]
 \end{equation}
-\begin{equation}\label{eq:5}
+\begin{equation}\label{eq:7}
 [C]_{tot} = [C] + [AB_2C]
 \end{equation}
 
@@ -88,39 +88,39 @@ The algorithm presented here the advantage of operating on a user-friendly set o
 
 # Mathematical Treatment
 In a system with n different species $X_{1…n}$, the mass conservation relationship for the $i^{-th}$ species can be stated as the sum over all the species contributions with their relative stoichiometries (a). We can define the conservation of mass for species $X_i$ as:
-\begin{equation}\label{eq:6}
+\begin{equation}\label{eq:8}
 a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot}
 \end{equation}
 
 Or equivalently:
-\begin{equation}\label{eq:7}
+\begin{equation}\label{eq:9}
 \sum_{j=1}^n a_j[X_j] = [X_i]_{tot}
 \end{equation}
 
 In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize Eq. 7 so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
 
-\begin{equation}\label{eq:8}
+\begin{equation}\label{eq:10}
 \frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1
 \end{equation}
 
-Then we “condense” the sum in the denominator of Eq. 8 into a product:
-\begin{equation}\label{eq:9}
+Then we “condense” the sum in the denominator of Eq. 10 into a product:
+\begin{equation}\label{eq:11}
 \sum_{j=1}^n a_j[X_j] = \prod_{j=1}^n \bigg(\frac{a_j[X_j]}{W_j}\bigg)^{W_j}
 \end{equation}
 
 With *W* for a given species *j* part of a mass conservation relationship being equal to:
-\begin{equation}\label{eq:10}
+\begin{equation}\label{eq:12}
 W_j = \frac{a_j[X_j]}{\sum_{p=1}^n a_p[X_p]}
 \end{equation}
 
-So that Eq. 8 becomes:
-\begin{equation}\label{eq:11}
+So that Eq. 10 becomes:
+\begin{equation}\label{eq:13}
 \frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1
 \end{equation}
 
 We can then reorganize the fraction:
-\begin{equation}\label{eq:12}
-\left\{ [X_1]^{-1}\*[X_2]^{-2}\*...\*[X_n]^{-n} \right\}\*[X_i]_{tot}
+\begin{equation}\label{eq:14}
+\left\{ [X_1]^{-1}\*[X_2]^{-2}\*...\*[X_n]^{-n} \right\}\*[X_i]_{tot}*\bigg{\bigg(\frac{W_1}{a_1}\bigg)^{W_1}*\bigg(\frac{W_2}{a_2}\bigg)^{W_2}*...*\bigg(\frac{W_n}{a_n}\bigg)^{W_n}\bigg}
 \end{equation}
 
 # Old Stuff
