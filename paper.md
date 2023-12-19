@@ -131,11 +131,12 @@ W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1
 Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
 \begin{equation}
   \left\{\begin{array}{@{}l@{}}
-    k_{i\omega}/k_{p\omega}=2\pi\times 10\\
-    \left|
-      \frac{k_{p\omega}s+k_{i\omega}}{s}\cdot\frac{1}{Ts+1}
-    \right|_{S=\mathrm{j}\cdot2\pi}=1
-  \end{array}\right.\,.
+    \frac{[AB_2]}{[A][B]^2} = K_1 \\
+    \frac{[AB_2C]}{[AB_2][C]} = K_2 \\
+    [A]_{tot} = [A] + [AB_2] + [AB_2C] \\
+    [B]_{tot} = [B] + 2[AB_2] + 2[AB_2C] \\
+    [C]_{tot} = [C] + [AB_2C] \\
+  \end{array}\right.
 \end{equation}
 
 # Old Stuff
