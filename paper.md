@@ -54,12 +54,54 @@ In the first section of this work, we define the general problem, in the second 
 # Problem Definition
 Let’s start with a simple example of interacting species:
 \begin{equation}\label{eq:1}
-\frac{[AB_2]}{[A][B]^2}=K1
+\frac{[AB_2]}{[A][B]^2}=K_1
 \end{equation}
 \begin{equation}\label{eq:2}
-\frac{[AB_2C]}{[AB_2][C]}=K2
+\frac{[AB_2C]}{[AB_2][C]}=K_2
 \end{equation}
 
+And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
+\begin{equation}\label{eq:3}
+\frac{[AB_2]}{([A][B]^2)} = K_1
+\end{equation}
+\begin{equation}\label{eq:4}
+\frac{[AB_2C]}{([AB_2][C])} = K_2
+\end{equation}
+
+And the associated mass conservations:
+\begin{equation}\label{eq:5}
+[A]_{tot} = [A] + [AB_2] + [AB_2C]
+\end{equation}
+\begin{equation}\label{eq:6}
+[B]_{tot} = [B] + 2[AB_2] + 2[AB_2C]
+\end{equation}
+\begin{equation}\label{eq:7}
+[C]_{tot} = [C] + [AB_2C]
+\end{equation}
+
+We can define a system comprising these equations to be simultaneously solved.
+In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one. A common approach to solve this problem is to linearize these equations first to make them suitable to be solved employing numerical methods.
+
+Common solutions in literature revolve around the so-called kinetic approach and thermodynamic approach, which involves finding the extent of reaction at the energy minimum of the system.
+
+The algorithm presented here the advantage of operating on a user-friendly set of equations that is intuitively employed by any user with a basic chemistry knowledge. These equations are solved with an approach equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
+
+# Mathematical Treatment
+In a system with n different species $X_{1…n}$, the mass conservation relationship for the $i^{-th}$ species can be stated as the sum over all the species contributions with their relative stoichiometries (a). We can define the conservation of mass for species $X_i$ as:
+\begin{equation}\label{eq:8}
+a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot}
+\end{equation}
+
+Or equivalently:
+\begin{equation}\label{eq:9}
+\sum_{j=1}^n a_j[X_j] = [X_i]_{tot}
+\end{equation}
+
+In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize Eq. 7 so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
+
+\begin{equation}\label{eq:9}
+\frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1
+\end{equation}
 
 # Old Stuff
 
