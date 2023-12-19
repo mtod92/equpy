@@ -130,14 +130,17 @@ W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1
 
 Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
 \begin{equation}
-  \left\{ 
-      \begin{array}{l}
-          a &\\
-          b &\\
-          c &\\
-          d
-      \end{array} 
-  \right.
+\[
+\setlength\arraycolsep{0pt}
+\renewcommand\arraystretch{1.25}
+\left\{
+\begin{array}{*{3}{rC}l}
+  2x & + &  y & + & 3z & = & 10 \\
+  x & + &  y & + &  z & = &  6 \\
+  x & + & 3y & + & 2z & = & 13
+\end{array}
+\right.
+\]
 \end{equation}
 
 # Old Stuff
