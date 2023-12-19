@@ -123,7 +123,20 @@ We can then reorganize the fraction:
 \Bigl\{[X_1]^{-1}*[X_2]^{-2}*...*[X_n]^{-n} \Bigr\}*[X_i]_{tot}*\Bigl\{ \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\} = 1
 \end{equation}
 
+By taking the logarithm of both sides we can conveniently transform the left-side product into a sum and reorganize with the following form:
+\begin{equation}\label{eq:15}
+W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\}
+\end{equation}
 
+Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
+\begin{equation}
+  \left\{\begin{array}{@{}l@{}}
+    k_{i\omega}/k_{p\omega}=2\pi\times 10\\
+    \left|
+      \frac{k_{p\omega}s+k_{i\omega}}{s}\cdot\frac{1}{Ts+1}
+    \right|_{S=\mathrm{j}\cdot2\pi}=1
+  \end{array}\right.\,.
+\end{equation}
 
 # Old Stuff
 
