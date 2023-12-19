@@ -8,13 +8,13 @@ tags:
   - physical chemistry
 authors:
   - name: Luca Citelli
-      affiliation: 1
+    affiliation: 1
   - name: Marco Todisco
     corresponding: true
     orcid: 0000-0001-6627-5283
     affiliation: 2
 affiliations:
- - name: Independent Researcher.
+ - name: Independent Researcher, Italy
    index: 1
  - name: Howard Hughes Medical Institute, Department of Chemistry, The University of Chicago, Chicago, Illinois 60637, USA.
    index: 2
