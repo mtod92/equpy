@@ -60,7 +60,6 @@ $$\frac{[AB_2]}{([A][B]^2)} = K_1 \label{Eq. 1}$$
 $$\frac{[AB_2C]}{([AB_2][C])} = K_2 \label{Eq. 2}$$
 
 And the associated mass conservations:
-
 $$[A]_{tot} = [A] + [AB_2] + [AB_2C] \label{Eq. 3}$$
 $$[B]_{tot} = [B] + 2[AB_2] + 2[AB_2C] \label{Eq. 4}$$
 $$[C]_{tot} = [C] + [AB_2C] \label{Eq. 5}$$
@@ -85,7 +84,7 @@ In order to express such conservation of mass as a linear function of the logari
 $$\frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1 \label{Eq. 8}$$
 
 Then we “condense” the sum in the denominator of Eq. 8 into a product:
-$$\sum_{j=1}^n a_j[X_j] = \prod{j=1}^n (\frac{a_j[X_j]}{W_j})^{W_j} \label{Eq. 9}$$
+$$\sum_{j=1}^n a_j[X_j] = \prod_{j=1}^n (\frac{a_j[X_j]}{W_j})^{W_j} \label{Eq. 9}$$
 
 With *W* for a given species *j* part of a mass conservation relationship being equal to:
 $$W_j = \frac{a_j[X_j]}{sum_{p=1}^n a_p[X_p]} \label{Eq. 10}$$
