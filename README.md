@@ -93,7 +93,9 @@ So that Eq. 8 becomes:
 $$\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1 \label{Eq. 11}$$
 
 We can then reorganize the fraction:
-$$([X_1]^{-1}*[X_2]^{-2}*...*[X_n]^{-n})$$
+$$[X_1]^{-1}*[X_2]^{-2}*...*[X_n]^{-n}$$
+
+$$*[X_i]_{tot}*\bigg{\bigg(\frac{W_1}{a_1}\bigg)^{W_1}*\bigg(\frac{W_2}{a_2}\bigg)^{W_2}*...*\bigg(\frac{W_n}{a_n}\bigg)^{W_n}\bigg} \label{Eq. 12}$$
 
 # Mathematics
 
