@@ -130,13 +130,14 @@ W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1
 
 Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
 \begin{equation}
-  \left\{\begin{array}{l}
-    \frac{[AB_2]}{[A][B]^2} = K_1 &\\
-    \frac{[AB_2C]}{[AB_2][C]} = K_2 &\\
-    [A]_{tot} = [A] + [AB_2] + [AB_2C] &\\
-    [B]_{tot} = [B] + 2[AB_2] + 2[AB_2C] &\\
-    [C]_{tot} = [C] + [AB_2C]
-  \end{array}\right.
+  \left\{ 
+      \begin{array}{l}
+          a &\\
+          b &\\
+          c &\\
+          d
+      \end{array} 
+  \right.
 \end{equation}
 
 # Old Stuff
