@@ -77,8 +77,11 @@ In a system with n different species $X_{1…n}$, the mass conservation relation
 $$a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot} \label{Eq. 6}$$
 
 Or equivalently:
-$$\sum_{j=1}^n a_j[X_j] = = [X_i]_{tot} \label{Eq. 7}$$
+$$\sum_{j=1}^n a_j[X_j] = [X_i]_{tot} \label{Eq. 7}$$
 
+In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize Eq. 7 so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
+
+$$\frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1 \label{Eq. 8}$$
 
 # Mathematics
 
