@@ -120,7 +120,7 @@ So that Eq. 10 becomes:
 
 We can then reorganize the fraction:
 \begin{equation}\label{eq:14}
-\biggl\{[X_1]^{-1}[X_2]^{-2}...[X_n]^{-n} \biggr\}[X_i]_{tot}
+\biggl\{[X_1]^{-1}*[X_2]^{-2}*...*[X_n]^{-n} \biggr\}*[X_i]_{tot}
 \end{equation}
 
 
