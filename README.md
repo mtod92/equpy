@@ -57,19 +57,27 @@ $$AB_2 + C &harr; AB_2C$$
 
 And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
 $$\frac{[AB_2]}{([A][B]^2)} = K_1 \label{Eq. 1}$$
-$$\frac{[AB_2C]}{([AB_2][C]^2)} = K_2 \label{Eq. 2}$$
+$$\frac{[AB_2C]}{([AB_2][C])} = K_2 \label{Eq. 2}$$
 
 And the associated mass conservations:
-$$[A]_tot = [A] + [AB_2] + [AB_2C] \label{Eq. 3}$$
-$$[B]_tot = [B] + 2[AB_2] + 2[AB_2C] \label{Eq. 4}$$
-$$[C]_tot = [C] + [AB_2C] \label{Eq. 5}$$
+$$[A]_{tot} = [A] + [AB_2] + [AB_2C] \label{Eq. 3}$$
+$$[B]_{tot} = [B] + 2[AB_2] + 2[AB_2C] \label{Eq. 4}$$
+$$[C]_{tot} = [C] + [AB_2C] \label{Eq. 5}$$
 
 We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one. A common approach to solve this problem is to linearize these equations first to make them suitable to be solved employing numerical methods.
 
-Common solutions in literature revolve around the so-called kinetic approach and thermodynamic approach, which involves finding the extent of reaction () at the energy minimum of the system.
+Common solutions in literature revolve around the so-called kinetic approach and thermodynamic approach, which involves finding the extent of reaction at the energy minimum of the system.
 
 The algorithm presented here the advantage of operating on a user-friendly set of equations that is intuitively employed by any user with a basic chemistry knowledge. These equations are solved with an approach equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
+
+# Mathematical Treatment
+In a system with n different species $X_{1…n}$, the mass conservation relationship for the $i^{-th}$ species can be stated as the sum over all the species contributions with their relative stoichiometries (a). We can define the conservation of mass for species $X_i$ as:
+
+$$a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot} \label{Eq. 6}$$
+
+Or equivalently:
+$$\sum_{j=1}^n a_j[X_j] = = [X_i]_{tot} \label{Eq. 7}$$
 
 
 # Mathematics
