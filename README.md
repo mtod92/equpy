@@ -90,7 +90,7 @@ With *W* for a given species *j* part of a mass conservation relationship being 
 $$W_j = \frac{a_j[X_j]}{\sum_{p=1}^n a_p[X_p]} \label{Eq. 10}$$
 
 So that Eq. 8 becomes:
-$$frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1 \label{Eq. 11}$$
+$$\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1 \label{Eq. 11}$$
 
 
 # Mathematics
