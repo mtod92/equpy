@@ -53,7 +53,24 @@ In the first section of this work, we define the general problem, in the second 
 # Problem Definition
 Let’s start with a simple example of interacting species:
 $$A + 2B &harr; AB_2$$
-AB_2 + C &harr; AB_2C$$
+$$AB_2 + C &harr; AB_2C$$
+
+And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
+$$\frac{[AB_2]}{([A][B]^2)} = K_1 \label{Eq. 1}$$
+$$\frac{[AB_2C]}{([AB_2][C]^2)} = K_2 \label{Eq. 2}$$
+
+And the associated mass conservations:
+$$[A]_tot = [A] + [AB_2] + [AB_2C] \label{Eq. 3}$$
+$$[B]_tot = [B] + 2[AB_2] + 2[AB_2C] \label{Eq. 4}$$
+$$[C]_tot = [C] + [AB_2C] \label{Eq. 5}$$
+
+We can define a system comprising these equations to be simultaneously solved.
+In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one. A common approach to solve this problem is to linearize these equations first to make them suitable to be solved employing numerical methods.
+
+Common solutions in literature revolve around the so-called kinetic approach and thermodynamic approach, which involves finding the extent of reaction () at the energy minimum of the system.
+
+The algorithm presented here the advantage of operating on a user-friendly set of equations that is intuitively employed by any user with a basic chemistry knowledge. These equations are solved with an approach equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
+
 
 # Mathematics
 
