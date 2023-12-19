@@ -129,6 +129,16 @@ W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1
 \end{equation}
 
 Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
+
+\[
+\left\{ 
+    \begin{array}{l}
+        a &\\
+        b
+    \end{array} 
+\right.
+\]
+
 \begin{equation}
     \begin{cases}
       a\\
