@@ -52,8 +52,8 @@ In the first section of this work, we define the general problem, in the second 
 
 # Problem Definition
 Let’s start with a simple example of interacting species:
-$$A + 2B &harr AB_2$$
-$$AB_2 + C &harr AB_2C$$
+$$A + 2B &harr; AB_2$$
+AB_2 + C &harr; AB_2C$$
 
 # Mathematics
 
