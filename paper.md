@@ -43,7 +43,25 @@ slower and more general solvers, for example when multiple kinetic traces have
 to be integrated as the species equilibrate and/or global fits on large sets 
 of parameters have to be performed.
 
-# Mathematics
+# Introduction
+The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
+While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
+In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall1,2 for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
+
+In the first section of this work, we define the general problem, in the second section we present the general mathematical treatment and implementation of the algorithm, and finally in the last section we present practical examples, focused to readers that primarily need to apply this implementation to solve their own problem, and we discuss usage and performance of the algorithm, with attention to real case scenarios and applications for the unexperienced reader.
+
+
+# Problem Definition
+Let’s start with a simple example of interacting species:
+\begin{equation}\label{eq:1}
+\frac{[AB_2]}{[A][B]^2}=K1
+\end{equation}
+\begin{equation}\label{eq:2}
+\frac{[AB_2C]}{[AB_2][C]}=K2
+\end{equation}
+
+
+# Old Stuff
 
 Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
 
