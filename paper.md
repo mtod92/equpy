@@ -120,7 +120,11 @@ So that Eq. 10 becomes:
 
 We can then reorganize the fraction:
 \begin{equation}\label{eq:14}
-\left{ [X_1]^{-1}\*[X_2]^{-2}\*...\*[X_n]^{-n} \right}\*[X_i]_{tot} * \left{\bigg(\frac{W_1}{a_1}\bigg)^{W_1}*\bigg(\frac{W_2}{a_2}\bigg)^{W_2}*...*\bigg(\frac{W_n}{a_n}\bigg)^{W_n}\right}
+\left{ [X_1]^{-1}\*[X_2]^{-2}\*...\*[X_n]^{-n} \right}\*[X_i]_{tot}
+\end{equation}
+
+\begin{equation}
+\left{\bigg(\frac{W_1}{a_1}\bigg)^{W_1}\*\bigg(\frac{W_2}{a_2}\bigg)^{W_2}*...*\bigg(\frac{W_n}{a_n}\bigg)^{W_n}\right}
 \end{equation}
 
 # Old Stuff
