@@ -53,8 +53,12 @@ In the first section of this work, we define the general problem, in the second 
 
 # Problem Definition
 Let’s start with a simple example of interacting species:
-$$A + 2B &harr; AB_2$$
-$$AB_2 + C &harr; AB_2C$$
+\begin{equation}
+A + 2B \Longleftrightarrow AB_2
+\end{equation}
+\begin{equation}
+AB_2 + C \Longleftrightarrow AB_2C
+\end{equation}
 
 And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
 \begin{equation}\label{eq:1}
