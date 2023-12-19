@@ -53,10 +53,10 @@ In the first section of this work, we define the general problem, in the second 
 
 # Problem Definition
 Let’s start with a simple example of interacting species:
-\begin{equation}
+\begin{equation} \nonumber
 A + 2B \Longleftrightarrow AB_2
 \end{equation}
-\begin{equation}
+\begin{equation} \nonumber
 AB_2 + C \Longleftrightarrow AB_2C
 \end{equation}
 
