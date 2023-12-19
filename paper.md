@@ -118,13 +118,6 @@ So that Eq. 10 becomes:
 \frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1
 \end{equation}
 
-We can then reorganize the fraction:
-\begin{equation}\label{eq:14}
-\left{ [X_1]^{-1}\*[X_2]^{-2}\*...\*[X_n]^{-n} \right}\*[X_i]_{tot}
-\end{equation}
-
-
-
 # Old Stuff
 
 Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
