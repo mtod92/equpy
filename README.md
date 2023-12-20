@@ -39,4 +39,4 @@ $$[C]_{tot} = [C] \+ [AB_2C] \label{Eq. 5}$$
 
 We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one.
-*equpy* solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method.
+'equpy' solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method.
