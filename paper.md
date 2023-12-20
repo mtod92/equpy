@@ -24,16 +24,16 @@ bibliography: paper.bib
 
 # Summary
 
-Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by Thomas Wayne Wall (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (vpasolve) and the solver available in chempy, showing a speed-up as high as two orders of magnitudes.
+Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by Thomas Wayne Wall (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (*vpasolve*) and the solver available in chempy, showing a speed-up as high as two orders of magnitudes.
 
 # Statement of need
 
 `equpy` is a Python package specialized in solving multiple chemical equilibria.
 `equpy` was designed to provide a user-friendly experience for a class-based
-implementations of the algorithm developed by Thomas Wayne Wall [@TWW:1984; @TWW:1986] to handle the
+implementations of the algorithm developed by Thomas Wayne Wall to handle the
 solution of mixed linear/non-linear systems of equations describing the simultaneous
 equilibration of multiple species reacting in a close system. `equpy` relies 
-heavily on numpy to handle data in matrix form and matplotlib to generate figures.
+on numpy to handle data in matrix form and matplotlib to generate figures.
 
 `equpy` was designed to be used by chemical, biological and physical/chemical
 researchers studying systems comprising multiple species reacting/interacting.
