@@ -97,13 +97,13 @@ Or equivalently:
 \sum_{j=1}^n a_j[X_j] = [X_i]_{tot}
 \end{equation}
 
-In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize Eq. 7 so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
+In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize \autoref{eq:7} so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
 
 \begin{equation}\label{eq:8}
 \frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1
 \end{equation}
 
-Then we “condense” the sum in the denominator of Eq. 8 into a product:
+Then we “condense” the sum in the denominator of \autoref{eq:8} into a product:
 \begin{equation}\label{eq:9}
 \sum_{j=1}^n a_j[X_j] = \prod_{j=1}^n \bigg(\frac{a_j[X_j]}{W_j}\bigg)^{W_j}
 \end{equation}
@@ -113,7 +113,7 @@ With *W* for a given species *j* part of a mass conservation relationship being 
 W_j = \frac{a_j[X_j]}{\sum_{p=1}^n a_p[X_p]}
 \end{equation}
 
-So that Eq. 8 becomes:
+So that \autoref{eq:8} becomes:
 \begin{equation}\label{eq:11}
 \frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1
 \end{equation}
@@ -140,15 +140,63 @@ Let’s now address the simple example presented previously by setting up the sy
     \end{cases}\,.
 \end{equation}
 
-We can perform the straightforward log-linearization of Eq. 1 and Eq. 2:
+We can perform the straightforward log-linearization of \autoref{eq:1} and \autoref{eq:2}:
 \begin{equation} \nonumber
--\ln⁡[A]-2\ln⁡[B] + \ln⁡[AB_2]=\ln⁡(K_1)
+$$-\ln⁡[A]-2\ln⁡[B] + \ln⁡[AB_2]=\ln⁡(K_1)$$
 \end{equation}
 \begin{equation} \nonumber
--\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C]=\ln⁡(K_2)
+$$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C]=\ln⁡(K_2)$$
 \end{equation}
 
-And linearize Eq. 3-5 according to the method from Passy and Baker:
+And linearize \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} according to the method from Passy and Baker:
+\begin{equation} \nonumber
+W_1\ln[A] + W_2\ln[AB_2] + W_3\ln[AB_2C] = \ln \Bigl\{[A]_{tot}* \Bigl( \frac{W_1}{1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{1}\Bigr)^{W_2}*\Bigl(\frac{W_3}{1}\Bigr)^{W_3}\Bigr\}
+\end{equation}
+\begin{equation} \nonumber
+W_4\ln[B] + W_5\ln[AB_2] + W_6\ln[AB_2C] = \ln \Bigl\{[B]_{tot}* \Bigl( \frac{W_4}{1} \Bigr)^{W_4}*\Bigl(\frac{W_5}{2}\Bigr)^{W_5}*\Bigl(\frac{W_6}{2}\Bigr)^{W_6}\Bigr\}
+\end{equation}
+W_7\ln[C] + W_8\ln[AB_2C] = \ln \Bigl\{[C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_8}\Bigr\}
+\end{equation}
+
+With $W_1 ... W_9* equal to:
+\begin{equation} \nonumber
+W_1 = \frac{[A]}{[A]+[AB_2]+[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_2 = \frac{[AB_2]}{[A]+[AB_2]+[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_3 = \frac{[AB_2C]}{[A]+[AB_2]+[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_4 = \frac{[B]}{[B]+2[AB_2]+2[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_5 = \frac{2[AB_2]}{[B]+2[AB_2]+2[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_6 = \frac{2[AB_2C]}{[B]+2[AB_2]+2[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_7 = \frac{[C]}{[C]+[AB_2C]}
+\end{equation}
+\begin{equation} \nonumber
+W_8 = \frac{[AB_2C]}{[C]+[AB_2C]}
+\end{equation}
+
+We can set the content of the parenthesis on the right side of linearized \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} as equal to $K_3$, $K_4$ and $K_5$ for convenience, so that:
+\begin{equation} \nonumber
+K_3 = [A]_{tot}* \Bigl( \frac{W_1}{1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{1}\Bigr)^{W_2}*\Bigl(\frac{W_3}{1}\Bigr)^{W_3}
+\end{equation}
+\begin{equation} \nonumber
+K_4 = [B]_{tot}* \Bigl( \frac{W_4}{1} \Bigr)^{W_4}*\Bigl(\frac{W_5}{2}\Bigr)^{W_5}*\Bigl(\frac{W_6}{2}\Bigr)^{W_6}
+\end{equation}
+\begin{equation} \nonumber
+K_5 = [C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_8}
+\end{equation}
+
+And finally put all linearized equations in a matrix form suitable for our implementation, so that the new set of equations in linearized form can be expressed as follows:
+
 
 # Old Stuff
 
