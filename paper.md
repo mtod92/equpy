@@ -141,12 +141,8 @@ Let’s now address the simple example presented previously by setting up the sy
 \end{equation}
 
 We can perform the straightforward log-linearization of \autoref{eq:1} and \autoref{eq:2}:
-\begin{equation} \nonumber
 $$-\ln⁡[A]-2\ln⁡[B] + \ln⁡[AB_2]=\ln⁡(K_1)$$
-\end{equation}
-\begin{equation} \nonumber
 $$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C]=\ln⁡(K_2)$$
-\end{equation}
 
 And linearize \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} according to the method from Passy and Baker:
 \begin{equation} \nonumber
