@@ -30,7 +30,7 @@ Determining the distribution of multiple chemical species at equilibrium for a g
 
 `equpy` is a Python package specialized in solving multiple chemical equilibria.
 `equpy` was designed to provide a user-friendly experience for a class-based
-implementations of the algorithm developed by Thomas Wayne Wall [@TWW:1986] to handle the
+implementations of the algorithm developed by Thomas Wayne Wall [@TWW:1984; @TWW:1986] to handle the
 solution of mixed linear/non-linear systems of equations describing the simultaneous
 equilibration of multiple species reacting in a close system. `equpy` relies 
 heavily on numpy to handle data in matrix form and matplotlib to generate figures.
@@ -46,7 +46,7 @@ of parameters have to be performed.
 # Introduction
 The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
 While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
-In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall1,2 for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
+In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall [@TWW:1984; @TWW:1986] for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
 
 In the first section of this work, we define the general problem, in the second section we present the general mathematical treatment and implementation of the algorithm, and finally in the last section we present practical examples, focused to readers that primarily need to apply this implementation to solve their own problem, and we discuss usage and performance of the algorithm, with attention to real case scenarios and applications for the unexperienced reader.
 
@@ -97,7 +97,7 @@ Or equivalently:
 \sum_{j=1}^n a_j[X_j] = [X_i]_{tot}
 \end{equation}
 
-In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy 3 as applied by Baker 4. We reorganize \autoref{eq:7} so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
+In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy [@Passy:1972] as applied by Baker [@Baker:1980]. We reorganize \autoref{eq:7} so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
 
 \begin{equation}\label{eq:8}
 \frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1
@@ -128,7 +128,7 @@ By taking the logarithm of both sides we can conveniently transform the left-sid
 W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\}
 \end{equation}
 
-Let’s now address the simple example presented previously by setting up the system of equations (Eq. 1-5) to be linearized and simultaneously solved:
+Let’s now address the simple example presented previously by setting up the system of equations \autoref{eq:1}, \autoref{eq:2}, \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} to be linearized and simultaneously solved:
 
 \begin{equation}
     \begin{cases}
@@ -194,46 +194,6 @@ K_5 = [C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_
 
 And finally put all linearized equations in a matrix form suitable for our implementation, so that the new set of equations in linearized form can be expressed as follows:
 ![Fig.1 Linear problem expressed in matrix form. \label{fig:1}](Fig1.png)
-
-# Old Stuff
-
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
-\end{equation}
-and refer to \autoref{eq:fourier} from text.
-
-# Citations
-
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% }
 
 # Acknowledgements
 
