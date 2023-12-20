@@ -33,8 +33,11 @@ $$\frac{[AB_2]}{([A][B]^2)} = K_1 \label{Eq. 1}$$
 $$\frac{[AB_2C]}{([AB_2][C])} = K_2 \label{Eq. 2}$$
 
 And the associated mass conservations:
+
 $$[A]_{tot} = [A] \+ [AB_2] \+ [AB_2C] \label{Eq. 3}$$
+
 $$[B]_{tot} = [B] \+ 2\*[AB_2] \+ 2\*[AB_2C] \label{Eq. 4}$$
+
 $$[C]_{tot} = [C] \+ [AB_2C] \label{Eq. 5}$$
 
 We can define a system comprising these equations to be simultaneously solved.
