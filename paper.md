@@ -141,21 +141,21 @@ Let’s now address the simple example presented previously by setting up the sy
 \end{equation}
 
 We can perform the straightforward log-linearization of \autoref{eq:1} and \autoref{eq:2}:
-$$-\ln⁡[A]-2\ln⁡[B] + \ln⁡[AB_2]=\ln⁡(K_1)$$
-$$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C]=\ln⁡(K_2)$$
+$$-\ln⁡[A] -2\ln⁡[B] + \ln⁡[AB_2] = \ln⁡(K_1)$$
+$$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C] = \ln⁡(K_2)$$
 
 And linearize \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} according to the method from Passy and Baker:
-\begin{equation} \nonumber
+\begin{equation}\label{eq:14}
 W_1\ln[A] + W_2\ln[AB_2] + W_3\ln[AB_2C] = \ln \Bigl\{[A]_{tot}* \Bigl( \frac{W_1}{1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{1}\Bigr)^{W_2}*\Bigl(\frac{W_3}{1}\Bigr)^{W_3}\Bigr\}
 \end{equation}
-\begin{equation} \nonumber
+\begin{equation}\label{eq:15}
 W_4\ln[B] + W_5\ln[AB_2] + W_6\ln[AB_2C] = \ln \Bigl\{[B]_{tot}* \Bigl( \frac{W_4}{1} \Bigr)^{W_4}*\Bigl(\frac{W_5}{2}\Bigr)^{W_5}*\Bigl(\frac{W_6}{2}\Bigr)^{W_6}\Bigr\}
 \end{equation}
-\begin{equation} \nonumber
+\begin{equation}\label{eq:16}
 W_7\ln[C] + W_8\ln[AB_2C] = \ln \Bigl\{[C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_8}\Bigr\}
 \end{equation}
 
-With $W_1 ... W_9*$ equal to:
+With $W_1 ... W_8$ equal to:
 \begin{equation} \nonumber
 W_1 = \frac{[A]}{[A]+[AB_2]+[AB_2C]}
 \end{equation}
@@ -181,7 +181,7 @@ W_7 = \frac{[C]}{[C]+[AB_2C]}
 W_8 = \frac{[AB_2C]}{[C]+[AB_2C]}
 \end{equation}
 
-We can set the content of the parenthesis on the right side of linearized \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} as equal to $K_3$, $K_4$ and $K_5$ for convenience, so that:
+We can set the content of the parenthesis on the right side of linearized \autoref{eq:14}, \autoref{eq:15} and \autoref{eq:16} as equal to $K_3$, $K_4$ and $K_5$ for convenience, so that:
 \begin{equation} \nonumber
 K_3 = [A]_{tot}* \Bigl( \frac{W_1}{1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{1}\Bigr)^{W_2}*\Bigl(\frac{W_3}{1}\Bigr)^{W_3}
 \end{equation}
@@ -193,7 +193,7 @@ K_5 = [C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_
 \end{equation}
 
 And finally put all linearized equations in a matrix form suitable for our implementation, so that the new set of equations in linearized form can be expressed as follows:
-
+![Fig.1 Linear problem expressed in matrix form. \label{fig:1}](Fig1.png)
 
 # Old Stuff
 
@@ -237,7 +237,6 @@ Figure sizes can be customized by adding an optional second parameter:
 
 # Acknowledgements
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+M.T. acknowledges the support of HHMI and Jack W. Szostak, the authors would like to thank Aleksandar Radakovic for introducing them to the problem of multiple equilibria at the genesis of this project.
 
 # References
