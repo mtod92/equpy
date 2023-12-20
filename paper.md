@@ -151,10 +151,11 @@ W_1\ln[A] + W_2\ln[AB_2] + W_3\ln[AB_2C] = \ln \Bigl\{[A]_{tot}* \Bigl( \frac{W_
 \begin{equation} \nonumber
 W_4\ln[B] + W_5\ln[AB_2] + W_6\ln[AB_2C] = \ln \Bigl\{[B]_{tot}* \Bigl( \frac{W_4}{1} \Bigr)^{W_4}*\Bigl(\frac{W_5}{2}\Bigr)^{W_5}*\Bigl(\frac{W_6}{2}\Bigr)^{W_6}\Bigr\}
 \end{equation}
+\begin{equation} \nonumber
 W_7\ln[C] + W_8\ln[AB_2C] = \ln \Bigl\{[C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_8}\Bigr\}
 \end{equation}
 
-With $W_1 ... W_9* equal to:
+With $W_1 ... W_9*$ equal to:
 \begin{equation} \nonumber
 W_1 = \frac{[A]}{[A]+[AB_2]+[AB_2C]}
 \end{equation}
