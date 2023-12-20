@@ -153,7 +153,7 @@ W_4\ln[B] + W_5\ln[AB_2] + W_6\ln[AB_2C] = \ln \Bigl\{[B]_{tot}* \Bigl( \frac{W_
 W_7\ln[C] + W_8\ln[AB_2C] = \ln \Bigl\{[C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_8}\Bigr\}
 \end{equation}
 
-With $W_1 ... W_8$ equal to:
+With $W_{1...8}$ equal to:
 \begin{equation} \nonumber
 W_1 = \frac{[A]}{[A]+[AB_2]+[AB_2C]}
 \end{equation}
@@ -192,6 +192,8 @@ K_5 = [C]_{tot}* \Bigl( \frac{W_7}{1} \Bigr)^{W_7}*\Bigl(\frac{W_8}{1}\Bigr)^{W_
 
 And finally put all linearized equations in a matrix form suitable for our implementation, so that the new set of equations in linearized form can be expressed as follows:
 ![Fig.1 Linear problem expressed in matrix form. \label{fig:1}](Fig1.png)
+
+With **r** being the vector of the residuals, calculated as **r** = **Mx** – **y**, whose norm can be used to probe the error in the approximate solution. Since $W_{1…8}$, $K_3$, $K_4$ and $K_5$ are functions of our unknown solutions, **M** and **y** must be calculated using an initial guess of **x**, and the system solved for a new vector of solutions that can used for the next iteration until a satisfying result is reached.
 
 # Acknowledgements
 
