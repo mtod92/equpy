@@ -91,7 +91,7 @@ class ChemicalReaction:
         self.result = np.exp(x)
         self.residuals = delta
         warnings.warn(
-            "Tolerance not reached. Manually check if the result is satisfying. Either change starting point, increase iterations or weight.",
+            "Tolerance not reached. Manually check if the result is satisfying. Either change starting point, increase iterations and/or weight.",
             stacklevel=2,
         )
         return np.exp(x), delta
@@ -106,15 +106,17 @@ class ChemicalReaction:
             np.arange(len(self.residuals)), self.residuals, s=120, color="black"
         )
 
-        ax1.set_xlabel("steps", fontsize=12)
-        ax1.set_ylabel("||r||", fontsize=12)
+        ax1.set_xlabel("steps", fontsize=14, fontname = 'Arial')
+        ax1.set_ylabel("||r||", fontsize=14, fontname = 'Arial')
+        ax1.set_title('Algorithm Progress', fontsize=16, fontname = 'Arial')
         ax1.set_yscale("linear")
 
         ax2.bar(np.arange(0, len(self.result)), self.result)
-        ax2.set_ylabel("conc", fontsize=12)
+        ax2.set_ylabel("concentration", fontsize=14, fontname = 'Arial')
         ax2.set_xticks(np.arange(0, len(self.result)))
+        ax2.set_title('Equilibrium Concentrations', fontsize=16, fontname = 'Arial')
         ax2.set_xticklabels(
-            sorted(self.s, key=lambda x: self.s[x]), fontsize=12, rotation=90
+            sorted(self.s, key=lambda x: self.s[x]), fontsize=12, rotation=90, fontname = 'Arial'
         )
 
 
