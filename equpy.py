@@ -4,14 +4,14 @@ import warnings
 from typing import List, Tuple
 from utils import eq_system_builder
 
-
 class EquationSystem:
-    def __init__(self, equations: List[str], mass_conservation: List[str]) -> None:
-        self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(
-            equations, mass_conservation
-        )
+    def __init__(self, equations, mass_conservation, species = None):
+        self.stoichiometry, self.mass_conservation, self.species = equations, mass_conservation, species
+        if isinstance(self.stoichiometry[0], str):
+            self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(self.stoichiometry, self.mass_conservation)
 
-    
+        if self.species == None:
+            self.species = {i:i for i in range(license(equations))} #placeholder for species name if not specified
 
 class ChemicalReaction:
     def __init__(
