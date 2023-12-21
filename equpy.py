@@ -4,8 +4,6 @@ import warnings
 from typing import List, Tuple
 from utils import eq_system_builder
 
-# github test branch_1
-
 
 class EquationSystem:
     def __init__(self, equations: List[str], mass_conservation: List[str]) -> None:
@@ -13,13 +11,14 @@ class EquationSystem:
             equations, mass_conservation
         )
 
+    
 
 class ChemicalReaction:
     def __init__(
         self,
         equation_system: EquationSystem,
         eq_constants: np.ndarray,
-        initial_masses: List[int],
+        initial_masses: List[float],
     ):
         initial_masses = np.array(initial_masses, dtype=float)
         if min(initial_masses) == 0:
@@ -85,7 +84,7 @@ class ChemicalReaction:
 
 
 def eqsolver(
-    N: np.ndarray, K: np.ndarray, C: np.ndarray, S: List[int], x: float, w: float
+    N: np.ndarray, K: np.ndarray, C: np.ndarray, S: List[float], x: float, w: float
 ) -> Tuple[float, float]:
     Cx = C * np.exp(x)
     W = Cx / np.sum(Cx, axis=1)[:, None]

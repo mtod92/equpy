@@ -7,17 +7,13 @@ tags:
   - binding
   - physical chemistry
 authors:
-  - name: Luca Citelli
-    affiliation: 1
   - name: Marco Todisco
     corresponding: true
     orcid: 0000-0001-6627-5283
-    affiliation: 2
+    affiliation: 1
 affiliations:
- - name: Independent Researcher, Italy
-   index: 1
  - name: Howard Hughes Medical Institute, Department of Chemistry, The University of Chicago, Chicago, Illinois 60637, USA.
-   index: 2
+   index: 1
 date: 13 August 2017
 bibliography: paper.bib
 ---
@@ -194,6 +190,8 @@ And finally put all linearized equations in a matrix form suitable for our imple
 ![Fig.1 Linear problem expressed in matrix form. \label{fig:1}](Fig1.png)
 
 With **r** being the vector of the residuals, calculated as **r** = **Mx** – **y**, whose norm can be used to probe the error in the approximate solution. Since $W_{1…8}$, $K_3$, $K_4$ and $K_5$ are functions of our unknown solutions, **M** and **y** must be calculated using an initial guess of **x**, and the system solved for a new vector of solutions that can used for the next iteration until a satisfying result is reached.
+
+
 
 # Acknowledgements
 
