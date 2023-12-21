@@ -29,16 +29,16 @@ $$A + 2B &harr; AB_2$$
 $$AB_2 + C &harr; AB_2C$$
 
 And their associated equilibrium constants, defined as the ratio between forward and backward reaction rates:
-$$\frac{[AB_2]}{([A][B]^2)} = K_1 \label{Eq. 1}$$
-$$\frac{[AB_2C]}{([AB_2][C])} = K_2 \label{Eq. 2}$$
+$$\frac{[AB_2]}{([A][B]^2)} = K_1$$
+$$\frac{[AB_2C]}{([AB_2][C])} = K_2$$
 
 And the associated mass conservations:
 
-$$[A]_{tot} = [A] \+ [AB_2] \+ [AB_2C] \label{Eq. 3}$$
+$$[A]_{tot} = [A] \+ [AB_2] \+ [AB_2C]$$
 
-$$[B]_{tot} = [B] \+ 2\*[AB_2] \+ 2\*[AB_2C] \label{Eq. 4}$$
+$$[B]_{tot} = [B] \+ 2\*[AB_2] \+ 2\*[AB_2C]$$
 
-$$[C]_{tot} = [C] \+ [AB_2C] \label{Eq. 5}$$
+$$[C]_{tot} = [C] \+ [AB_2C]$$
 
 We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one.
