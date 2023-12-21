@@ -5,20 +5,40 @@ from typing import List, Tuple
 from utils import eq_system_builder
 
 class EquationSystem:
+    """
+    Assembles an object including the equations defining the systems reactions and mass conservations
+    Parameters:
+    - equations: set of reactions, either list of Str or list of numerical lists
+    - mass_conservation: set of mass conservations, either list of Str or list of numerical lists
+    - species: optional argument. If reactions in Str form are passed the species names are automatically generated.
+      Custom species names can be passed when input is in matrix form as a dictionary of species, such as: 
+      {'A':0, 'B':1, 'C':2} for a system involving three species (n=3) named A, B, C.
+    """
     def __init__(self, equations, mass_conservation, species = None):
         self.stoichiometry, self.mass_conservation, self.species = equations, mass_conservation, species
-        if isinstance(self.stoichiometry[0], str):
+        if isinstance(self.stoichiometry[0], str): #assuming the user is passing reactions in textual form
             self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(self.stoichiometry, self.mass_conservation)
 
         if self.species == None:
-            self.species = {'i':i for i in range(np.shape(self.stoichiometry)[1])} #placeholder for species name if not specified
+            self.species = {i:i for i in range(np.shape(self.stoichiometry)[1])} #placeholder for species name if not specified
 
 class ChemicalReaction:
+    """
+    Assembles an object with the equations defining the systems reactions and mass conservations 
+    plus equilibrium constants and total masses.
+    Parameters:
+    - equation_system: EquationSystem object as defined in the respective Class
+    - eq_constants: array of equilibrium constants, definde as the ratio between forward and reverse reactions.
+    - initial_masses: array of initial masses.
+
+    IMPORTANT: for equpy's result to be meaningful the unit of measurement have to be matching: if the equilibrium constants
+    are given in (1/micromolar) units, the concentrations have to be given in micromolar units.
+    """
     def __init__(
         self,
         equation_system: EquationSystem,
         eq_constants: np.ndarray,
-        initial_masses: List[float],
+        initial_masses: np.ndarray,
     ):
         initial_masses = np.array(initial_masses, dtype=float)
         if min(initial_masses) == 0:
@@ -37,6 +57,18 @@ class ChemicalReaction:
         self.result = []
         self.residuals = []
 
+    """
+    solve method calls eqsolver to find equilibrium concentration of all species.
+    Parameters:
+    - iter: maximum number of iterations allowed. The algorithm typically converges in less then 10 steps, 
+    but poor initial guesses for solution may require more steps.
+    - tolerance: early stopping criteria. The algorithm is limited by numerical precision, so that the solution
+    can (at best) be correct up to ~16 significant digits. A tolerance of 100 means that we are fine with two 
+    orders of magnitude smaller precision, for example relying on ~14 significant digits.
+    - w: weighted update for solutions. This can be kept as zero for well-behaving systems. Small values
+    such as 0.5 or 1.0 grealy improve code stability for more difficult tasks, but will cause a slower
+    approach to convergence.
+    """
     def solve(
         self, iter: int, tolerance: float, w: float
     ) -> Tuple[np.ndarray, List[np.ndarray]]:
@@ -64,6 +96,9 @@ class ChemicalReaction:
         )
         return np.exp(x), delta
 
+    """
+    plotter method relies on matplotlib to generate a graph showing algorithm's progress to convergence and final results.
+    """
     def plotter(self):
         f, (ax1, ax2) = plt.subplots(1, 2, sharey=False, figsize=(15, 5))
         ax1.plot(np.arange(len(self.residuals)), self.residuals, lw=3, color="black")
@@ -86,6 +121,9 @@ class ChemicalReaction:
 def eqsolver(
     N: np.ndarray, K: np.ndarray, C: np.ndarray, S: List[float], x: float, w: float
 ) -> Tuple[float, float]:
+    """
+    eqsolver is the core of equpy and handles the application of Thomas Wayne Wall algorithm on the input
+    """
     Cx = C * np.exp(x)
     W = Cx / np.sum(Cx, axis=1)[:, None]
     Ks = np.prod((W / C) ** W, axis=1) * S
