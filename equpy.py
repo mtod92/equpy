@@ -1,30 +1,59 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
-from typing import List, Tuple
+from typing import List, Tuple, Union, Optional, Dict
 from utils import eq_system_builder
 
-class EquationSystem:
-    """
-    Assembles an object including the equations defining the systems reactions and mass conservations
-    Parameters:
-    - equations: set of reactions, either list of Str or list of numerical lists
-    - mass_conservation: set of mass conservations, either list of Str or list of numerical lists
-    - species: optional argument. If reactions in Str form are passed the species names are automatically generated.
-      Custom species names can be passed when input is in matrix form as a dictionary of species, such as: 
-      {'A':0, 'B':1, 'C':2} for a system involving three species (n=3) named A, B, C.
-    """
-    def __init__(self, equations, mass_conservation, species = None):
-        self.stoichiometry, self.mass_conservation, self.species = equations, mass_conservation, species
-        if isinstance(self.stoichiometry[0], str): #assuming the user is passing reactions in textual form
-            self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(self.stoichiometry, self.mass_conservation)
 
-        if self.species == None:
-            self.species = {i:i for i in range(np.shape(self.stoichiometry)[1])} #placeholder for species name if not specified
+class EquationSystem:
+    def __init__(
+        self,
+        equations: Union[List[List[float]], np.ndarray],
+        mass_conservation: Union[List[List[float]], np.ndarray],
+        species: Optional[Dict[str, int]] = None,
+    ):
+        """
+        Assembles an object including the equations defining the systems reactions and mass conservations
+        Parameters:
+        - equations: set of reactions, either list of list of numbers or bidimensional numpy.ndarray
+        - mass_conservation: set of mass conservations,  either list of list of numbers or bidimensional numpy.ndarray
+        - species: optional argument. Custom species names can be passed when input is in matrix form as a dictionary of species, such as:
+        {'A':0, 'B':1, 'C':2} for a system involving three species (n=3) named A, B, C.
+        """
+        self.stoichiometry = (
+            equations if isinstance(equations, np.ndarray) else np.array(equations)
+        )
+        self.mass_conservation = (
+            mass_conservation
+            if isinstance(mass_conservation, np.ndarray)
+            else np.array(mass_conservation)
+        )
+        self.species = (
+            species
+            if species is not None
+            else {i: i for i in range(np.shape(self.stoichiometry)[1])}
+        )  # placeholder for species name if not specified
+
+    @classmethod
+    def from_literal_equations(
+        cls, equations: List[str], mass_conservation: List[str]
+    ) -> None:
+        """
+        Alternative constructor that assembles an object including the equations defining the systems reactions and mass conservations,
+        passed as text
+        Parameters:
+        - equations: set of reactions, expressed as a list of strings
+        - mass_conservation: set of mass conservations, expressed as a list of strings
+        """
+        _stoichiometry, _mass_conservation, _species = eq_system_builder(
+            equations, mass_conservation
+        )
+        return cls(_stoichiometry, _mass_conservation, _species)
+
 
 class ChemicalReaction:
     """
-    Assembles an object with the equations defining the systems reactions and mass conservations 
+    Assembles an object with the equations defining the systems reactions and mass conservations
     plus equilibrium constants and total masses.
     Parameters:
     - equation_system: EquationSystem object as defined in the respective Class
@@ -34,6 +63,7 @@ class ChemicalReaction:
     IMPORTANT: for equpy's result to be meaningful the unit of measurement have to be matching: if the equilibrium constants
     are given in (1/micromolar) units, the concentrations have to be given in micromolar units.
     """
+
     def __init__(
         self,
         equation_system: EquationSystem,
@@ -69,6 +99,7 @@ class ChemicalReaction:
     such as 0.5 or 1.0 grealy improve code stability for more difficult tasks, but will cause a slower
     approach to convergence.
     """
+
     def solve(
         self, iter: int, tolerance: float, w: float
     ) -> Tuple[np.ndarray, List[np.ndarray]]:
@@ -99,6 +130,7 @@ class ChemicalReaction:
     """
     plotter method relies on matplotlib to generate a graph showing algorithm's progress to convergence and final results.
     """
+
     def plotter(self):
         f, (ax1, ax2) = plt.subplots(1, 2, sharey=False, figsize=(15, 5))
         ax1.plot(np.arange(len(self.residuals)), self.residuals, lw=3, color="black")
@@ -106,17 +138,20 @@ class ChemicalReaction:
             np.arange(len(self.residuals)), self.residuals, s=120, color="black"
         )
 
-        ax1.set_xlabel("steps", fontsize=14, fontname = 'Arial')
-        ax1.set_ylabel("||r||", fontsize=14, fontname = 'Arial')
-        ax1.set_title('Algorithm Progress', fontsize=16, fontname = 'Arial')
+        ax1.set_xlabel("steps", fontsize=14, fontname="Arial")
+        ax1.set_ylabel("||r||", fontsize=14, fontname="Arial")
+        ax1.set_title("Algorithm Progress", fontsize=16, fontname="Arial")
         ax1.set_yscale("linear")
 
         ax2.bar(np.arange(0, len(self.result)), self.result)
-        ax2.set_ylabel("concentration", fontsize=14, fontname = 'Arial')
+        ax2.set_ylabel("concentration", fontsize=14, fontname="Arial")
         ax2.set_xticks(np.arange(0, len(self.result)))
-        ax2.set_title('Equilibrium Concentrations', fontsize=16, fontname = 'Arial')
+        ax2.set_title("Equilibrium Concentrations", fontsize=16, fontname="Arial")
         ax2.set_xticklabels(
-            sorted(self.s, key=lambda x: self.s[x]), fontsize=12, rotation=90, fontname = 'Arial'
+            sorted(self.s, key=lambda x: self.s[x]),
+            fontsize=12,
+            rotation=90,
+            fontname="Arial",
         )
 
 
