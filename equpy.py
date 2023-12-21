@@ -11,7 +11,8 @@ class EquationSystem:
             self.stoichiometry, self.mass_conservation, self.species = eq_system_builder(self.stoichiometry, self.mass_conservation)
 
         if self.species == None:
-            self.species = {i:i for i in range(license(equations))} #placeholder for species name if not specified
+            print(self.stoichiometry)
+            self.species = {'i':i for i in range(len(self.stoichiometry))} #placeholder for species name if not specified
 
 class ChemicalReaction:
     def __init__(
