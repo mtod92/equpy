@@ -128,3 +128,99 @@ reaction = ChemicalReaction(eq_system, K, total_masses)
 x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
+
+# Performance Benchmark
+To test the performance of equpy, we have ran the simple example provided in [chempy documentation](https://github.com/bjodah/chempy#chemical-equilibria) and timed uniquely the solver execution time with the "time" module.
+
+## chempy Benchmark
+'''
+from chempy import Equilibrium
+from chempy.chemistry import Species
+from chempy.equilibria import EqSystem
+from collections import defaultdict
+import time
+
+water_autop = Equilibrium({'H2O'}, {'H+', 'OH-'}, 10**-14)  # unit "molar" assumed
+ammonia_prot = Equilibrium({'NH4+'}, {'NH3', 'H+'}, 10**-9.24)  # same here
+substances = [Species.from_formula(f) for f in 'H2O OH- H+ NH3 NH4+'.split()]
+eqsys = EqSystem([water_autop, ammonia_prot], substances)
+print('\n'.join(map(str, eqsys.rxns)))  # "rxns" short for "reactions"
+
+init_conc = defaultdict(float, {'H2O': 1, 'NH3': 0.1})
+
+start_time = time.time()
+for i in range(1000):
+    x_chempy, sol, sane = eqsys.root(init_conc)
+print("")
+print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/i*1000))
+print("")
+'''
+
+Which provides a time of ~19 ms with the code executed in Visual Studio Code from a Jupyter Notebook.
+
+## equpy Benchmark
+'''
+from equpy import ChemicalReaction, EquationSystem
+import numpy as np
+import time
+
+reactions = ['OH + H = H2O',
+    'NH3 + H = NH4']
+
+mass_conservation = ['H2O + OH',
+                     'H2O + H + NH4',
+                     'NH3 + NH4']
+
+K = [1e14, 10**(9.24)]
+total_masses = [1, 1, 0.1]
+
+eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
+reaction = ChemicalReaction(eq_system, K, total_masses)
+
+start_time = time.time()
+for j in range(1000):
+    x, delta = reaction.solve(20, 1e2, 0.5)
+print("")
+print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1000))
+print("")
+
+reaction.plotter()
+'''
+
+Which provides a time of ~0.19 ms, for a 10x enhancement.
+
+## MATLAB vpasolve
+We also provide the comparison with MATLAB built-in solver *vpasolve*.
+
+'''
+x = solve_([1e14 10^(9.24)], 1, 0.1);
+
+function values = solve_(K, H2Otot, NH3tot)
+    guesses = zeros(5,2);
+    guesses(:,2) = Inf;
+    syms H2O OH H NH3 NH4 real
+    
+    eqns = [OH*H*K(1) == H2O;
+        NH3*H*K(2) == NH4;
+        OH + H2O == H2Otot;
+        H + NH4 + H2O == H2Otot;
+        NH3 + NH4 == NH3tot];
+    
+    tic
+    for i = 1:100
+    S = vpasolve(eqns, ...
+        [H2O OH H NH3 NH4], guesses);
+    end
+    time = toc/i*1000
+    
+    fn = fieldnames(S);
+    values = zeros(length(eqns),1);
+    
+    for k=1:numel(fn)
+        values(k) = double(S.(fn{k}));
+    end
+'''
+
+Which provides a time of ~31 ms, with equpy giving more than a 150x enhancement.
+
+
