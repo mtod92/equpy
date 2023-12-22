@@ -45,3 +45,16 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
 # Example
+
+.. code:: python
+
+   >>> from chempy import Substance
+   >>> ferricyanide = Substance.from_formula('Fe(CN)6-3')
+   >>> ferricyanide.composition == {0: -3, 26: 1, 6: 6, 7: 6}  # 0 for charge
+   True
+   >>> print(ferricyanide.unicode_name)
+   Fe(CN)₆³⁻
+   >>> print(ferricyanide.latex_name + ", " + ferricyanide.html_name)
+   Fe(CN)_{6}^{3-}, Fe(CN)<sub>6</sub><sup>3-</sup>
+   >>> print('%.3f' % ferricyanide.mass)
+   211.955
