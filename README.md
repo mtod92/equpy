@@ -53,24 +53,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+# we can define chemical reactions
 reactions = ['A + 2B = AB2',
     'AB2 + C = AB2C']
 
+# we can establish mass conservation for A, B and C
 mass_conservation = ['A + AB2 + AB2C',
                 'B + 2AB2 + 2AB2C',
                 'C + AB2C']
 
-K = [1, 10]
-total_masses = [1,2,3]
+K = [1, 10] # define equilibrium constants
+total_masses = [1,2,3] # define total masses of A, B and C to be conserved
+
+# use equpy to build an EquationSystem object starting from equations expressed in literal form
 eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
+
+# set up the ChemicalReaction object comprising the system of equation, equilibrium constants and total_masses
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
-start_time = time.time()
-for j in range(100):
-    x, delta = reaction.solve(20, 1e2, 0)
-print("")
-print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1000))
-print("")
-
+# solve and plot the results
+x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
