@@ -44,7 +44,8 @@ We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one.
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
-# Example
+# Examples
+## Example 1
 Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
 In the example below, a simple implementation is shown:
 
@@ -78,6 +79,7 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 
+## Example 2
 Using equpy we can also solve the example by providing reactions and mass conservation relationship in matrix form.
 In the example below, a simple implementation is shown:
 ```
@@ -104,6 +106,7 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 
+## Example 3
 Finally, using equpy we can also solve the example by reading reactions, mass conservation, equibrium constants and total masses in matrix form from .csv files using a simple utility function.
 In the example below, a simple implementation is shown:
 ```
