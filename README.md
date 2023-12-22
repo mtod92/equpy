@@ -195,7 +195,7 @@ Which provides a time of ~1.9 ms with the code executed in Visual Studio Code fr
 </p>
 
 ## MATLAB vpasolve benchmark
-We also provide the comparison with MATLAB built-in solver *vpasolve*.
+We also provide the comparison with MATLAB built-in solver *[vpasolve](https://www.mathworks.com/help/symbolic/sym.vpasolve.html)*
 
 ```
 x = solve_([1e14 10^(9.24)], 1, 0.1);
