@@ -44,7 +44,7 @@ We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one.
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
-# Solving the Example
+# Solving the example using equpy
 ## Approach (1) - text input
 Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
 In the example below, a simple implementation is shown:
@@ -224,4 +224,4 @@ function values = solve_(K, H2Otot, NH3tot)
 Which provides a time of ~31 ms, with equpy giving more than a 15x enhancement.
 
 # Considerations on Performance
-It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time. Running the python implementation here presented from terminal allows for a reduction of execution time both for equpy and chempy of ~30%. It easy to see how asimple implementation of the algorithm using numba or cython could allow for an execution time comparable or faster than MATLAB.
+It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time. Running the python implementation here presented from terminal allows for a reduction of execution time both for equpy and chempy of ~30%. It would not be suprising for a simple implementation of the Python algorithm relying on numba or cython to execute in a time comparable or faster than MATLAB.
