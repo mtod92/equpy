@@ -23,7 +23,7 @@ The mathematical treatment of multiple chemical equilibria is a problem that can
 While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
 In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall1,2 for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
 
-# Problem Definition
+# Problem definition
 Let’s start with a simple example of interacting species:
 $$A + 2B &harr; AB_2$$
 $$AB_2 + C &harr; AB_2C$$
@@ -129,10 +129,10 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 
-# Performance Benchmark
+# Performance benchmark
 To test the performance of equpy, we have ran the simple example provided in [chempy documentation](https://github.com/bjodah/chempy#chemical-equilibria) and timed uniquely the solver execution time with the "time" module.
 
-## chempy Benchmark
+## chempy benchmark
 ```
 from chempy import Equilibrium
 from chempy.chemistry import Species
@@ -158,7 +158,7 @@ print("")
 
 Which provides a time of ~19 ms with the code executed in Visual Studio Code from a Jupyter Notebook.
 
-## equpy Benchmark
+## equpy benchmark
 ```
 from equpy import ChemicalReaction, EquationSystem
 import numpy as np
@@ -183,13 +183,11 @@ for j in range(1000):
 print("")
 print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1000))
 print("")
-
-reaction.plotter()
 ```
 
 Which provides a time of ~1.9 ms with the code executed in Visual Studio Code from a Jupyter Notebook, for a 10x enhancement.
 
-## MATLAB vpasolve
+## MATLAB vpasolve benchmark
 We also provide the comparison with MATLAB built-in solver *vpasolve*.
 
 ```
@@ -223,5 +221,5 @@ function values = solve_(K, H2Otot, NH3tot)
 
 Which provides a time of ~31 ms, with equpy giving more than a 15x enhancement.
 
-# Considerations on Performance
+# Considerations on performance
 It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time. Running the python implementation here presented from terminal allows for a reduction of execution time both for equpy and chempy of ~30%. It would not be suprising for a simple implementation of the Python algorithm relying on numba or cython to execute in a time comparable or faster than MATLAB.
