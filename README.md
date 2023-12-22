@@ -133,7 +133,7 @@ reaction.plotter()
 To test the performance of equpy, we have ran the simple example provided in [chempy documentation](https://github.com/bjodah/chempy#chemical-equilibria) and timed uniquely the solver execution time with the "time" module.
 
 ## chempy Benchmark
-'''
+```
 from chempy import Equilibrium
 from chempy.chemistry import Species
 from chempy.equilibria import EqSystem
@@ -154,12 +154,12 @@ for i in range(1000):
 print("")
 print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/i*1000))
 print("")
-'''
+```
 
 Which provides a time of ~19 ms with the code executed in Visual Studio Code from a Jupyter Notebook.
 
 ## equpy Benchmark
-'''
+```
 from equpy import ChemicalReaction, EquationSystem
 import numpy as np
 import time
@@ -185,14 +185,14 @@ print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1
 print("")
 
 reaction.plotter()
-'''
+```
 
 Which provides a time of ~0.19 ms, for a 10x enhancement.
 
 ## MATLAB vpasolve
 We also provide the comparison with MATLAB built-in solver *vpasolve*.
 
-'''
+```
 x = solve_([1e14 10^(9.24)], 1, 0.1);
 
 function values = solve_(K, H2Otot, NH3tot)
@@ -219,7 +219,7 @@ function values = solve_(K, H2Otot, NH3tot)
     for k=1:numel(fn)
         values(k) = double(S.(fn{k}));
     end
-'''
+```
 
 Which provides a time of ~31 ms, with equpy giving more than a 150x enhancement.
 
