@@ -132,10 +132,10 @@ class ChemicalReaction:
     """
 
     def plotter(self):
-        f, (ax1, ax2) = plt.subplots(1, 2, sharey=False, figsize=(15, 5))
-        ax1.plot(np.arange(len(self.residuals)), self.residuals, lw=3, color="black")
+        f, (ax1, ax2) = plt.subplots(1, 2, sharey=False, figsize=(10, 4.5))
+        ax1.plot(np.arange(len(self.residuals)), self.residuals, lw=5, color="black")
         ax1.scatter(
-            np.arange(len(self.residuals)), self.residuals, s=120, color="black"
+            np.arange(len(self.residuals)), self.residuals, s=150, color="black"
         )
 
         ax1.set_xlabel("steps", fontsize=14, fontname="Arial")
