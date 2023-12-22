@@ -79,7 +79,7 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 <p align="center">
-  <img src="Figures/example_result.png" width="650" title="equpy plotter output">
+  <img src="Figures/example_result.png" width="900" title="equpy plotter output">
 </p>
 
 ## Approach (2) - matrix input
