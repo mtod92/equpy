@@ -45,6 +45,9 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
 # Solving the example using equpy
+In the following section, we present different approaches on how to solve the previous example using `equpy`.
+These are also available and ready to use in the [interactive Jupyter Notebook](equpy_test.ipynb).
+
 ## Approach (1) - text input
 Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
 In the example below, a simple implementation is shown:
@@ -133,7 +136,7 @@ reaction.plotter()
 ```
 
 # Performance benchmark
-To test the performance of equpy, we have ran the simple example provided in [chempy documentation](https://github.com/bjodah/chempy#chemical-equilibria) and timed uniquely the solver execution time with the "time" module.
+To test the performance of equpy, we focus on the most complete chemistry package available for Python users and the built-in MATLAB solver *vpasolve*. In order to test them on the same problem, we have ran the simple example provided in [chempy documentation](https://github.com/bjodah/chempy#chemical-equilibria) and timed uniquely the solver execution time with the "time" module, leaving out all overhead required for variables definitions and setting up the problem.
 
 ## chempy benchmark
 ```
