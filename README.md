@@ -78,6 +78,9 @@ reaction = ChemicalReaction(eq_system, K, total_masses)
 x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
+<p align="center">
+  <img src="Figures/example_result.png.png" width="650" title="equpy plotter output">
+</p>
 
 ## Approach (2) - matrix input
 Using equpy we can also solve the example by providing reactions and mass conservation relationship in matrix form.
@@ -188,7 +191,7 @@ print("")
 Which provides a time of ~1.9 ms with the code executed in Visual Studio Code from a Jupyter Notebook, for a 10x enhancement and approaching the same result in 20 iterations:
 
 <p align="center">
-  <img src="Figures/chempy_comparison.png" width="350" title="Comparison of chempy result and equpy result after 20 iterations">
+  <img src="Figures/chempy_comparison.png" width="650" title="Comparison of chempy result and equpy result after 20 iterations">
 </p>
 
 ## MATLAB vpasolve benchmark
