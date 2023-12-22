@@ -45,13 +45,13 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
 # Example
-Using equpy
+Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
+In the example below, a simple implementation is shown:
 
 ```
 from equpy import ChemicalReaction, EquationSystem
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 # we can define chemical reactions
 reactions = ['A + 2B = AB2',
@@ -74,6 +74,52 @@ eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
 # solve and plot the results
+x, delta = reaction.solve(20, 1e2, 0)
+reaction.plotter()
+```
+
+Using equpy we can also solve the example by providing reactions and mass conservation relationship in matrix form.
+In the example below, a simple implementation is shown:
+```
+from equpy import ChemicalReaction, EquationSystem
+import numpy as np
+import matplotlib.pyplot as plt
+
+stoichiometry = np.array([[-1, -2, 0, 1, 0],[0, 0, -1, -1, 1]])
+K = np.array([1, 10])
+total_masses = np.array([1, 2, 3])
+mass_conservation = np.array([[1, 0, 0, 1, 1],[0, 1, 0, 2, 2],[0, 0, 1, 0, 1]])
+species_names = {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4}
+
+# use equpy to build an EquationSystem object
+# starting from equations expressed in matrix form.
+# since we have not provided reactions in literal form,
+# a dictionary containing species_names is provided,
+# with species listed in the same order as the 
+# stoichiometry matrix
+eq_system = EquationSystem(stoichiometry, mass_conservation, species_names)
+reaction = ChemicalReaction(eq_system, K, total_masses)
+
+x, delta = reaction.solve(20, 1e2, 0)
+reaction.plotter()
+```
+
+Finally, using equpy we can also solve the example by reading reactions, mass conservation, equibrium constants and total masses in matrix form from .csv files using a simple utility function.
+In the example below, a simple implementation is shown:
+```
+from equpy import ChemicalReaction, EquationSystem
+import numpy as np
+import matplotlib.pyplot as plt
+from utils import csv_loader
+
+filename_stoichiometry = '/examples/readme_example/st.csv'
+filename_mass_conservations = '/examples/readme_example/mc.csv'
+
+stoichiometry, K, mass_conservation, total_masses = csv_loader(filename_stoichiometry, filename_mass_conservations)
+
+eq_system = EquationSystem(stoichiometry, mass_conservation, {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4})
+reaction = ChemicalReaction(eq_system, K, total_masses)
+
 x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
