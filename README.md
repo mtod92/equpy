@@ -44,8 +44,8 @@ We can define a system comprising these equations to be simultaneously solved.
 In this system, we can see that chemical equilibria consist of nonlinear functions, meaning that they cannot be expressed as a sum of their variables each raised to the power of one.
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
-# Examples
-## Example 1
+# Solving the Example
+## Approach (1) - text input
 Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
 In the example below, a simple implementation is shown:
 
@@ -79,7 +79,7 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 
-## Example 2
+## Approach (2) - matrix input
 Using equpy we can also solve the example by providing reactions and mass conservation relationship in matrix form.
 In the example below, a simple implementation is shown:
 ```
@@ -106,7 +106,7 @@ x, delta = reaction.solve(20, 1e2, 0)
 reaction.plotter()
 ```
 
-## Example 3
+## Approach (3) - matrix input loaded from .csv
 Finally, using equpy we can also solve the example by reading reactions, mass conservation, equibrium constants and total masses in matrix form from .csv files using a simple utility function.
 In the example below, a simple implementation is shown:
 ```
@@ -187,7 +187,7 @@ print("")
 reaction.plotter()
 ```
 
-Which provides a time of ~1.9 ms, for a 10x enhancement.
+Which provides a time of ~1.9 ms with the code executed in Visual Studio Code from a Jupyter Notebook, for a 10x enhancement.
 
 ## MATLAB vpasolve
 We also provide the comparison with MATLAB built-in solver *vpasolve*.
@@ -222,4 +222,6 @@ function values = solve_(K, H2Otot, NH3tot)
 ```
 
 Which provides a time of ~31 ms, with equpy giving more than a 15x enhancement.
-It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time, and simple implementation of the algorithm using numba or cython could allow for comparable or faster execution time.
+
+# Considerations on Performance
+It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time. Running the python implementation here presented from terminal allows for a reduction of execution time both for equpy and chempy of ~30%. It easy to see how asimple implementation of the algorithm using numba or cython could allow for an execution time comparable or faster than MATLAB.
