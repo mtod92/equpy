@@ -45,9 +45,15 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 `equpy` solves this problem by linearizing these equations to make them suitable to be solved employing linear algebra and an iterative numerical method equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
 # Example
+Using equpy
 
 ```
-eactions = ['A + 2B = AB2',
+from equpy import ChemicalReaction, EquationSystem
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+
+reactions = ['A + 2B = AB2',
     'AB2 + C = AB2C']
 
 mass_conservation = ['A + AB2 + AB2C',
@@ -55,9 +61,9 @@ mass_conservation = ['A + AB2 + AB2C',
                 'C + AB2C']
 
 K = [1, 10]
-S = [1,2,3]
+total_masses = [1,2,3]
 eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
-reaction = ChemicalReaction(eq_system, K, S)
+reaction = ChemicalReaction(eq_system, K, total_masses)
 
 start_time = time.time()
 for j in range(100):

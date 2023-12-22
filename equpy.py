@@ -58,7 +58,7 @@ class ChemicalReaction:
     Parameters:
     - equation_system: EquationSystem object as defined in the respective Class
     - eq_constants: array of equilibrium constants, definde as the ratio between forward and reverse reactions.
-    - initial_masses: array of initial masses.
+    - total_masses: array of total masses.
 
     IMPORTANT: for equpy's result to be meaningful the unit of measurement have to be matching: if the equilibrium constants
     are given in (1/micromolar) units, the concentrations have to be given in micromolar units.
@@ -68,22 +68,22 @@ class ChemicalReaction:
         self,
         equation_system: EquationSystem,
         eq_constants: np.ndarray,
-        initial_masses: np.ndarray,
+        total_masses: np.ndarray,
     ):
-        initial_masses = np.array(initial_masses, dtype=float)
-        if min(initial_masses) == 0:
+        total_masses = np.array(total_masses, dtype=float)
+        if min(total_masses) == 0:
             warnings.warn(
                 "Species concentrations (S) should not be set to zero, eps has been set instead. The result may not be reliable.",
                 stacklevel=2,
             )
-            I = np.where(initial_masses == 0)[0]
-            initial_masses[I] = 2.2e-16
+            I = np.where(total_masses == 0)[0]
+            total_masses[I] = 2.2e-16
 
-        self.s = equation_system.species
-        self.N = equation_system.stoichiometry
+        self.species = equation_system.species
+        self.stoichiometry = equation_system.stoichiometry
         self.K = eq_constants
-        self.C = equation_system.mass_conservation
-        self.S = initial_masses
+        self.mass_conservation = equation_system.mass_conservation
+        self.total_masses = total_masses
         self.result = []
         self.residuals = []
 
@@ -91,7 +91,7 @@ class ChemicalReaction:
     solve method calls eqsolver to find equilibrium concentration of all species.
     Parameters:
     - iter: maximum number of iterations allowed. The algorithm typically converges in less then 10 steps, 
-    but poor initial guesses for solution may require more steps.
+    but poor total guesses for solution may require more steps.
     - tolerance: early stopping criteria. The algorithm is limited by numerical precision, so that the solution
     can (at best) be correct up to ~16 significant digits. A tolerance of 100 means that we are fine with two 
     orders of magnitude smaller precision, for example relying on ~14 significant digits.
@@ -104,14 +104,14 @@ class ChemicalReaction:
         self, iter: int, tolerance: float, w: float
     ) -> Tuple[np.ndarray, List[np.ndarray]]:
         iter = int(iter)
-        x0 = np.ones(np.shape(self.N)[1])
+        x0 = np.ones(np.shape(self.stoichiometry)[1])
         delta = []
 
-        x, delta_ = eqsolver(self.N, self.K, self.C, self.S, x0, w)
+        x, delta_ = eqsolver(self.stoichiometry, self.K, self.mass_conservation, self.total_masses, x0, w)
         delta.append(delta_)
 
         for i in range(iter):
-            x, delta_ = eqsolver(self.N, self.K, self.C, self.S, x, w)
+            x, delta_ = eqsolver(self.stoichiometry, self.K, self.mass_conservation, self.total_masses, x, w)
             delta.append(delta_)
 
             if delta[-1] < tolerance * np.linalg.norm(x * 2.2e-16):
@@ -148,7 +148,7 @@ class ChemicalReaction:
         ax2.set_xticks(np.arange(0, len(self.result)))
         ax2.set_title("Equilibrium Concentrations", fontsize=16, fontname="Arial")
         ax2.set_xticklabels(
-            sorted(self.s, key=lambda x: self.s[x]),
+            sorted(self.species, key=lambda x: self.species[x]),
             fontsize=12,
             rotation=90,
             fontname="Arial",
@@ -156,20 +156,20 @@ class ChemicalReaction:
 
 
 def eqsolver(
-    N: np.ndarray, K: np.ndarray, C: np.ndarray, S: List[float], x: float, w: float
+    stoichiometry: np.ndarray, K: np.ndarray, mass_conservation: np.ndarray, total_masses: List[float], x: float, w: float
 ) -> Tuple[float, float]:
     """
     eqsolver is the core of equpy and handles the application of Thomas Wayne Wall algorithm on the input
     """
-    Cx = C * np.exp(x)
+    Cx = mass_conservation * np.exp(x)
     W = Cx / np.sum(Cx, axis=1)[:, None]
-    Ks = np.prod((W / C) ** W, axis=1) * S
+    Ks = np.prod((W / mass_conservation) ** W, axis=1) * total_masses
 
-    M = np.vstack((N, W))
+    M = np.vstack((stoichiometry, W))
     y = np.log(np.hstack((K, Ks)))
     delta = np.linalg.norm(np.dot(M, x.T) - y[:, None].T)
 
-    if np.shape(N)[1] == len(K) + len(S):
+    if np.shape(stoichiometry)[1] == len(K) + len(total_masses):
         x = (w * x + np.linalg.solve(M, y)) / (w + 1)
     else:  # solve overdetermined systems as M^(-1) * y
         x = (w * x + np.dot(np.linalg.pinv(M), y)) / (w + 1)
