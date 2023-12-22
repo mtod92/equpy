@@ -1,4 +1,4 @@
-# equipy
+# equpy
 
 `equpy` is a Python package specialized in solving multiple chemical equilibria.
 `equpy` was designed to provide a user-friendly experience for a class-based implementation of the algorithm developed by [Thomas Wayne Wall](https://repository.mines.edu/bitstream/handle/11124/13991/Wall_10782543.pdf?sequence=1to) to handle the solution of mixed linear/non-linear systems of equations describing the simultaneous equilibration of multiple species reacting in a close system. `equpy` relies on numpy to handle data in matrix form and matplotlib to generate figures.
