@@ -118,9 +118,11 @@ from utils import csv_loader
 filename_stoichiometry = '/examples/readme_example/st.csv'
 filename_mass_conservations = '/examples/readme_example/mc.csv'
 
-stoichiometry, K, mass_conservation, total_masses = csv_loader(filename_stoichiometry, filename_mass_conservations)
+stoichiometry, K, mass_conservation, total_masses = csv_loader(
+    filename_stoichiometry, filename_mass_conservations)
 
-eq_system = EquationSystem(stoichiometry, mass_conservation, {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4})
+eq_system = EquationSystem(
+    stoichiometry, mass_conservation, {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4})
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
 x, delta = reaction.solve(20, 1e2, 0)
