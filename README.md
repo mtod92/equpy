@@ -47,12 +47,24 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 # Example
 
 ```
-function test() {  
-from chempy import Substance
-ferricyanide = Substance.from_formula('Fe(CN)6-3')
-ferricyanide.composition == {0: -3, 26: 1, 6: 6, 7: 6}  # 0 for charge True
-print(ferricyanide.unicode_name)
-print(ferricyanide.latex_name + ", " + ferricyanide.html_name)
-print('%.3f' % ferricyanide.mass)
-}
+eactions = ['A + 2B = AB2',
+    'AB2 + C = AB2C']
+
+mass_conservation = ['A + AB2 + AB2C',
+                'B + 2AB2 + 2AB2C',
+                'C + AB2C']
+
+K = [1, 10]
+S = [1,2,3]
+eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
+reaction = ChemicalReaction(eq_system, K, S)
+
+start_time = time.time()
+for j in range(100):
+    x, delta = reaction.solve(20, 1e2, 0)
+print("")
+print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1000))
+print("")
+
+reaction.plotter()
 ```
