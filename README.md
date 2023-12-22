@@ -65,10 +65,12 @@ mass_conservation = ['A + AB2 + AB2C',
 K = [1, 10] # define equilibrium constants
 total_masses = [1,2,3] # define total masses of A, B and C to be conserved
 
-# use equpy to build an EquationSystem object starting from equations expressed in literal form
+# use equpy to build an EquationSystem object
+# starting from equations expressed in literal form
 eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
 
-# set up the ChemicalReaction object comprising the system of equation, equilibrium constants and total_masses
+# set up the ChemicalReaction object comprising 
+# the system of equation, equilibrium constants and total_masses
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
 # solve and plot the results
