@@ -194,7 +194,6 @@ With **r** being the vector of the residuals, calculated as **r** = **Mx** – *
 
 
 # Acknowledgements
-
-M.T. acknowledges the support of HHMI and Jack W. Szostak, the authors would like to thank Aleksandar Radakovic for introducing them to the problem of multiple equilibria at the genesis of this project.
+The author acknowledges the support of HHMI and Jack W. Szostak, and the help of Luca Citelli in cleaning up the code and assistance. The author would like to thank Aleksandar Radakovic for introducing him to the problem of multiple equilibria at the genesis of this project.
 
 # References
