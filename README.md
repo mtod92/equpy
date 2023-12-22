@@ -6,7 +6,7 @@
 `equpy` was designed to be used by chemical, biological and physical/chemical researchers studying systems comprising multiple species reacting/interacting. This tool is particularly well-suited for researchers that (i) need to quickly calculate equilibria with a matrix-form input, and/or (ii) cannot rely on slower and more general solvers, for example when multiple kinetic traces have to be integrated as the species equilibrate and/or global fits on large sets of parameters have to be performed.
 
 # Summary
-Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by [Thomas Wayne Wall](https://repository.mines.edu/bitstream/handle/11124/13991/Wall_10782543.pdf?sequence=1to) (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (vpasolve) and the solver available in chempy, showing a speed-up as high as two orders of magnitudes.
+Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by [Thomas Wayne Wall](https://repository.mines.edu/bitstream/handle/11124/13991/Wall_10782543.pdf?sequence=1to) (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (*vpasolve*) and the solver available in chempy - one of the most complete open source chemistry package available to this date - showing a speed-up as high as two orders of magnitudes.
 
 # Introduction
 The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
@@ -38,6 +38,8 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 In the following section, we present different approaches on how to solve the previous example using `equpy`.
 These are also available and ready to use in the [interactive Jupyter Notebook](equpy_test.ipynb).
 
+In order to use equpy, download the files from the repository and place them in the same folder as your current project.
+
 ## Approach (1) - text input
 Using equpy we can solve the example by simply expressing the reactions and mass conservation relationship in literal form.
 In the example below, a simple implementation is shown:
@@ -67,8 +69,17 @@ eq_system = EquationSystem.from_literal_equations(reactions, mass_conservation)
 # the system of equation, equilibrium constants and total_masses
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
-# solve and plot the results
-x, delta = reaction.solve(20, 1e2, 0)
+# call solver: by default it is set to run with the following settings:
+# iter = 1e2,
+# x0 = np.array([1, 1, 1, 1, 1]),
+# tolerance = 1e2, 
+# w = 0
+# all these can be passed as custom arguments by the user, for example:
+# x, delta = reaction.solve(iter = 10, x0 = np.array([1,2,3,4,5]), tolerance = 1e5, w = 0.7)
+
+x, delta = reaction.solve()
+
+# plot the results
 reaction.plotter()
 ```
 <p align="center">
@@ -98,7 +109,7 @@ species_names = {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4}
 eq_system = EquationSystem(stoichiometry, mass_conservation, species_names)
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
-x, delta = reaction.solve(20, 1e2, 0)
+x, delta = reaction.solve()
 reaction.plotter()
 ```
 
@@ -121,7 +132,7 @@ eq_system = EquationSystem(
     stoichiometry, mass_conservation, {'A':0, 'B':1, 'C':2, 'AB2':3, 'AB2C':4})
 reaction = ChemicalReaction(eq_system, K, total_masses)
 
-x, delta = reaction.solve(20, 1e2, 0)
+x, delta = reaction.solve(iter = 20)
 reaction.plotter()
 ```
 
@@ -175,7 +186,7 @@ reaction = ChemicalReaction(eq_system, K, total_masses)
 
 start_time = time.time()
 for j in range(1000):
-    x, delta = reaction.solve(20, 1e2, 0.5)
+    x, delta = reaction.solve(iter = 20, w = 0.5)
 print("")
 print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1000))
 print("")
@@ -187,7 +198,7 @@ Which provides a time of ~1.9 ms with the code executed in Visual Studio Code fr
   <img src="Figures/chempy_comparison.png" width="650" title="Comparison of chempy result and equpy result after 20 iterations">
 </p>
 
-## MATLAB vpasolve benchmark
+## MATLAB *vpasolve* benchmark
 We also provide the comparison with MATLAB built-in solver *[vpasolve](https://www.mathworks.com/help/symbolic/sym.vpasolve.html)*
 
 ```

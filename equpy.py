@@ -92,6 +92,7 @@ class ChemicalReaction:
     Parameters:
     - iter: maximum number of iterations allowed. The algorithm typically converges in less then 10 steps, 
     but poor total guesses for solution may require more steps.
+    - x0: initial guesses, by default it is equal to an array of ones.
     - tolerance: early stopping criteria. The algorithm is limited by numerical precision, so that the solution
     can (at best) be correct up to ~16 significant digits. A tolerance of 100 means that we are fine with two 
     orders of magnitude smaller precision, for example relying on ~14 significant digits.
@@ -101,11 +102,12 @@ class ChemicalReaction:
     """
 
     def solve(
-        self, iter: int, tolerance: float, w: float
+        self, iter: int = 1e2, x0 : np.ndarray = None, tolerance: float = 1e2, w: float = 0.0
     ) -> Tuple[np.ndarray, List[np.ndarray]]:
         iter = int(iter)
-        x0 = np.ones(np.shape(self.stoichiometry)[1])
         delta = []
+
+        x0 = (np.ones(np.shape(self.stoichiometry)[1]) if x0 is None else x0)
 
         x, delta_ = eqsolver(self.stoichiometry, self.K, self.mass_conservation, self.total_masses, x0, w)
         delta.append(delta_)
