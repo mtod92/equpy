@@ -185,7 +185,11 @@ print("execution time --- %s milliseconds ---" % ((time.time() - start_time)/j*1
 print("")
 ```
 
-Which provides a time of ~1.9 ms with the code executed in Visual Studio Code from a Jupyter Notebook, for a 10x enhancement.
+Which provides a time of ~1.9 ms with the code executed in Visual Studio Code from a Jupyter Notebook, for a 10x enhancement and approaching the same result in 20 iterations:
+
+<p align="center">
+  <img src="Figures/chempy_comparison.png" width="350" title="Comparison of chempy result and equpy result after 20 iterations">
+</p>
 
 ## MATLAB vpasolve benchmark
 We also provide the comparison with MATLAB built-in solver *vpasolve*.
