@@ -187,7 +187,7 @@ print("")
 reaction.plotter()
 ```
 
-Which provides a time of ~0.19 ms, for a 10x enhancement.
+Which provides a time of ~1.9 ms, for a 10x enhancement.
 
 ## MATLAB vpasolve
 We also provide the comparison with MATLAB built-in solver *vpasolve*.
@@ -221,6 +221,5 @@ function values = solve_(K, H2Otot, NH3tot)
     end
 ```
 
-Which provides a time of ~31 ms, with equpy giving more than a 150x enhancement.
-
-
+Which provides a time of ~31 ms, with equpy giving more than a 15x enhancement.
+It is worth noting how a simple MATLAB implementation of equpy (see MATLAB folder) allows to solve the problem in 0.19 ms, for an extra 10x boost in execution time, and simple implementation of the algorithm using numba or cython could allow for comparable or faster execution time.
