@@ -32,7 +32,7 @@ equilibration of multiple species reacting in a close system. `equpy` relies
 on numpy to handle data in matrix form and matplotlib to generate figures.
 
 `equpy` was designed to be used by chemical, biological and physical/chemical
-researchers studying systems comprising multiple species reacting/interacting.
+researchers studying systems comprising multiple reacting/interacting species.
 This tool is particularly well-suited for researchers that (i) need to quickly 
 calculate equilibria with a matrix-form input, and/or (ii) cannot rely on 
 slower and more general solvers, for example when multiple kinetic traces have 
