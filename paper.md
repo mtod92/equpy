@@ -139,13 +139,6 @@ We can perform the straightforward log-linearization of \autoref{eq:1} and \auto
 $$-\ln⁡[A] -2\ln⁡[B] + \ln⁡[AB_2] = \ln⁡(K_1)$$
 $$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C] = \ln⁡(K_2)$$
 
-\begin{equation}
--\ln⁡[A] -2\ln⁡[B] + \ln⁡[AB_2] = \ln⁡(K_1)
-\end{equation}
-\begin{equation}
--\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C] = \ln⁡(K_2)
-\end{equation}
-
 And linearize \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} according to the method from Passy and Baker:
 \begin{equation}\label{eq:14}
 W_1\ln[A] + W_2\ln[AB_2] + W_3\ln[AB_2C] = \ln \Bigl\{[A]_{tot}* \Bigl( \frac{W_1}{1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{1}\Bigr)^{W_2}*\Bigl(\frac{W_3}{1}\Bigr)^{W_3}\Bigr\}
