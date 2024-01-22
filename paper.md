@@ -103,7 +103,7 @@ Then we “condense” the sum in the denominator of \autoref{eq:8} into a produ
 \sum_{j \in N} a_j[X_j] = \prod_{j \in N} \bigg(\frac{a_j[X_j]}{W_j}\bigg)^{W_j}
 \end{equation}
 
-With *W* for the *j^{th}* species part of the mass conservation relationship of the $i^{th}$ species being equal to:
+With *W* for the *$j^{th}$* species part of the mass conservation relationship of the $i^{th}$ species being equal to:
 \begin{equation}\label{eq:10}
 W_j = \frac{a_j[X_j]}{\sum_{p \in N} a_p[X_p]}
 \end{equation}
@@ -115,7 +115,7 @@ So that \autoref{eq:8} becomes:
 
 We can then reorganize the fraction:
 \begin{equation}\label{eq:12}
-\Bigl\{[X_1]^{-1}*[X_2]^{-2}*...*[X_n]^{-n} \Bigr\}*[X_i]_{tot}*\Bigl\{ \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\} = 1
+\Bigl\{[X_1]^{-W_1}*[X_2]^{-W_2}*...*[X_n]^{-W_n} \Bigr\}*[X_i]_{tot}*\Bigl\{ \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\} = 1
 \end{equation}
 
 By taking the logarithm of both sides we can conveniently transform the left-side product into a sum and reorganize with the following form:
@@ -138,6 +138,13 @@ Let’s now address the simple example presented previously by setting up the sy
 We can perform the straightforward log-linearization of \autoref{eq:1} and \autoref{eq:2}:
 $$-\ln⁡[A] -2\ln⁡[B] + \ln⁡[AB_2] = \ln⁡(K_1)$$
 $$-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C] = \ln⁡(K_2)$$
+
+\begin{equation}
+-\ln⁡[A] -2\ln⁡[B] + \ln⁡[AB_2] = \ln⁡(K_1)
+\end{equation}
+\begin{equation}
+-\ln[AB_2] -\ln⁡[C] + \ln⁡[AB_2C] = \ln⁡(K_2)
+\end{equation}
 
 And linearize \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} according to the method from Passy and Baker:
 \begin{equation}\label{eq:14}
