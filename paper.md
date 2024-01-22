@@ -44,11 +44,10 @@ The mathematical treatment of multiple chemical equilibria is a problem that can
 While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
 In this work, we focus on the implementation of an approach developed by Thomas Wayne Wall [@TWW:1984; @TWW:1986] for linearization and solution of the system of equations describing a complex set of chemical reactions. The compact scripts provided here accept as inputs the reaction stoichiometry matrix, the associated array of equilibrium constants, mass conservation matrix and associated array of amounts of starting materials. All of these are conveniently input as matrices and arrays and in the examples provided here these and can be directly read through .csv files editable using common software such as Microsoft Excel, Apple Numbers, Apache OpenOffice Calc and LibreOffice Calc.
 
-In the first section of this work, we define the general problem, in the second section we present the general mathematical treatment and implementation of the algorithm, and finally in the last section we present practical examples, focused to readers that primarily need to apply this implementation to solve their own problem, and we discuss usage and performance of the algorithm, with attention to real case scenarios and applications for the unexperienced reader.
-
+In the first section of this work, we define the general problem, in the second section we present the general mathematical treatment and implementation of the algorithm.
 
 # Problem Definition
-Let’s start with a simple example of interacting species:
+Let’s start with a simple example of reacting species:
 \begin{equation} \nonumber
 A + 2B \Longleftrightarrow AB_2
 \end{equation}
@@ -91,7 +90,7 @@ Or equivalently we can rewrite \autoref{eq:6} as a summation over all species ta
 [X_i]_{tot} = \sum_{j \in N} a_j[X_j]
 \end{equation}
 
-So that *$a_j \neq 0$* and *$X_j \neq 0$*.
+So that for the *$j^{th}$* species it holds true that *$a_j \neq 0$* and *$X_j \neq 0$*.
 In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy [@Passy:1972] as applied by Baker [@Baker:1980]. We reorganize \autoref{eq:7} so that the summation is rewritten as the following:
 
 \begin{equation}\label{eq:8}
@@ -110,17 +109,17 @@ W_j = \frac{a_j[X_j]}{\sum_{p \in N} a_p[X_p]}
 
 So that \autoref{eq:8} becomes:
 \begin{equation}\label{eq:11}
-\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_n]}{W_n}\bigg)^{W_n}} = 1
+\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_k]}{W_k}\bigg)^{W_k}} = 1
 \end{equation}
 
 We can then reorganize the fraction:
 \begin{equation}\label{eq:12}
-\Bigl\{[X_1]^{-W_1}*[X_2]^{-W_2}*...*[X_n]^{-W_n} \Bigr\}*[X_i]_{tot}*\Bigl\{ \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\} = 1
+\Bigl\{[X_1]^{-W_1}*[X_2]^{-W_2}*...*[X_k]^{-W_k} \Bigr\}*[X_i]_{tot}*\Bigl\{ \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_k}{a_k}\Bigr)^{W_k}\Bigr\} = 1
 \end{equation}
 
 By taking the logarithm of both sides we can conveniently transform the left-side product into a sum and reorganize with the following form:
 \begin{equation}\label{eq:13}
-W_1\ln[X_1] + W_2\ln[X_2] +...+ W_n\ln[X_n]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_n}{a_n}\Bigr)^{W_n}\Bigr\}
+W_1\ln[X_1] + W_2\ln[X_2] +...+ W_k\ln[X_k]=\Bigl\{[X_i]_{tot}* \Bigl( \frac{W_1}{a_1} \Bigr)^{W_1}*\Bigl(\frac{W_2}{a_2}\Bigr)^{W_2}*...*\Bigl(\frac{W_k}{a_k}\Bigr)^{W_k}\Bigr\}
 \end{equation}
 
 Let’s now address the simple example presented previously by setting up the system of equations \autoref{eq:1}, \autoref{eq:2}, \autoref{eq:3}, \autoref{eq:4} and \autoref{eq:5} to be linearized and simultaneously solved:
