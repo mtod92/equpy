@@ -8,6 +8,15 @@
 # Summary
 Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by [Thomas Wayne Wall](https://repository.mines.edu/bitstream/handle/11124/13991/Wall_10782543.pdf?sequence=1to) (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (*vpasolve*) and the solver available in chempy - one of the most complete open source chemistry packages available to this date - showing an execution time reduced by as much as two orders of magnitudes.
 
+# Installation
+To incorporate `equpy` into your project, follow these simple steps:
+
+1) Click on the green "Code" button and choose "Download ZIP" to download the package files.
+2) Extract the downloaded ZIP file to a location of your choice.
+3) Copy the extracted files into the local folder of your project.
+
+Now, you're ready to seamlessly integrate [Your Package Name] into your project and leverage its functionality. If you encounter any issues or have questions, refer to the documentation or feel free to reach out to us.
+
 # Introduction
 The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
 While open source or commercial packages and standalone software are available to address this task, such as Cantera, EQS4WIN, TOMSYM, COMSOL and chempy, these often rely on black-box solvers and may require some background in coding and potentially inconvenient input requirements, needing to write the set of reactions and mass conservations in extended form that may not be well-suited for automated processes.
