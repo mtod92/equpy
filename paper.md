@@ -80,31 +80,31 @@ In this system, we can see that chemical equilibria consist of nonlinear functio
 The algorithm presented here has the advantage of operating on a user-friendly set of equations that is intuitively employed by any user with a basic chemistry knowledge. These equations are solved with an approach equivalent to the Newton search of the logarithmic equations over the logarithm of the variables.
 
 # Mathematical Treatment
-In a system with *n* different species $X_{1…n}$, the mass conservation relationship for the $i^{-th}$ species can be stated as the sum over all the species contributions with their relative stoichiometries (*a*). We can define the conservation of mass for species $X_i$ as:
+In a system with *n* different species, the mass conservation relationship for the $i^{th}$ species can be stated as the sum over all the species having masses $X_{1…n}$ multiplied by their stoichiometries (*a*). We can define the conservation of mass for the $i^{th}$ species as:
 \begin{equation}\label{eq:6}
 a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot}
 \end{equation}
 
-Or equivalently a summation over the species whose indexes belong to the set N = {1, 2, ..., n}:
+Or equivalently a summation over all species taking part of the mass conservation for the $i^{th}$ species, whose indexes belong to the set N:
 \begin{equation}\label{eq:7}
-\sum_{j \epsilon N} a_j[X_j] = [X_i]_{tot}
+\sum_{j \in N} a_j[X_j] = [X_i]_{tot}
 \end{equation}
 
-With *a* for a given species that does not take part of a mass conservation relationship being equal to zero.
-In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy [@Passy:1972] as applied by Baker [@Baker:1980]. We reorganize \autoref{eq:7} so that the summation over all strictly positive terms *a* and *X* is rewritten as the following:
+So that *$a_j \neq 0$* and *$X_j \neq 0$*.
+In order to express such conservation of mass as a linear function of the logarithm of concentrations of the reactants, following the approach by Wall we must first transform the summations to products using the theory of the arithmetic-geometric mean inequality from Passy [@Passy:1972] as applied by Baker [@Baker:1980]. We reorganize \autoref{eq:7} so that the summation is rewritten as the following:
 
 \begin{equation}\label{eq:8}
-\frac{[X_i]_{tot}}{\sum_{j=1}^n a_j[X_j]} = 1
+\frac{[X_i]_{tot}}{\sum_{j \in N} a_j[X_j]} = 1
 \end{equation}
 
 Then we “condense” the sum in the denominator of \autoref{eq:8} into a product:
 \begin{equation}\label{eq:9}
-\sum_{j=1}^n a_j[X_j] = \prod_{j=1}^n \bigg(\frac{a_j[X_j]}{W_j}\bigg)^{W_j}
+\sum_{j \in N} a_j[X_j] = \prod_{j \in N} \bigg(\frac{a_j[X_j]}{W_j}\bigg)^{W_j}
 \end{equation}
 
-With *W* for a given species *j* part of a mass conservation relationship being equal to:
+With *W* for a given species *j* part of a mass conservation relationship for species $i$ being equal to:
 \begin{equation}\label{eq:10}
-W_j = \frac{a_j[X_j]}{\sum_{p=1}^n a_p[X_p]}
+W_j = \frac{a_j[X_j]}{\sum_{p \in N} a_p[X_p]}
 \end{equation}
 
 So that \autoref{eq:8} becomes:
