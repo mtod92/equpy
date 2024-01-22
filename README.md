@@ -15,7 +15,7 @@ To incorporate `equpy` into your project, follow these simple steps:
 2) Extract the downloaded ZIP file to a location of your choice.
 3) Copy the extracted files into the local folder of your project.
 
-Now, you're ready to seamlessly integrate [Your Package Name] into your project and leverage its functionality. If you encounter any issues or have questions, refer to the documentation or feel free to reach out to us.
+Now, you're ready to import and seamlessly integrate `equpy` into your project and leverage its functionality. If you encounter any issues or have questions, refer to the documentation or feel free to reach out to us.
 
 # Introduction
 The mathematical treatment of multiple chemical equilibria is a problem that can be intimidating for inexperienced researchers and community members that are not familiar with computer science and linear algebra. While tutorials for the solution of simple systems are readily available on basic chemistry textbooks and online resources, the task of upscaling these is non-trivial.
