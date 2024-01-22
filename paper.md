@@ -82,13 +82,13 @@ The algorithm presented here has the advantage of operating on a user-friendly s
 # Mathematical Treatment
 In a system with *n* different species, the mass conservation relationship for the $i^{th}$ species can be stated as the sum over the concentrations of all the species $X_{1…n}$ multiplied by their stoichiometries (*a*). We can define the conservation of mass for the $i^{th}$ species as:
 \begin{equation}\label{eq:6}
-a_1X_1 + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot}
+[X_i]_{tot} = a_1X_1 + a_2[X_2] + ... + a_n[X_n]
 \end{equation}
 
 Where square brackets denote concentrations of chemical species.
-Or equivalently a summation over all species taking part of the mass conservation for the $i^{th}$ species, whose indexes belong to the set N:
+Or equivalently we can rewrite \autoref{eq:6} as a summation over all species taking part of the mass conservation for the $i^{th}$ species, whose indexes belong to the set N:
 \begin{equation}\label{eq:7}
-\sum_{j \in N} a_j[X_j] = [X_i]_{tot}
+[X_i]_{tot} = \sum_{j \in N} a_j[X_j]
 \end{equation}
 
 So that *$a_j \neq 0$* and *$X_j \neq 0$*.
