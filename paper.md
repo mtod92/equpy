@@ -109,7 +109,7 @@ W_j = \frac{a_j[X_j]}{\sum_{p \in N} a_p[X_p]}
 
 So that \autoref{eq:8} becomes:
 \begin{equation}\label{eq:11}
-\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_n[X_k]}{W_k}\bigg)^{W_k}} = 1
+\frac{[X_i]_{tot}}{\bigg(\frac{a_1[X_1]}{W_1}\bigg)^{W_1} * \bigg(\frac{a_2[X_2]}{W_2}\bigg)^{W_2} * ... * \bigg(\frac{a_k[X_k]}{W_k}\bigg)^{W_k}} = 1
 \end{equation}
 
 We can then reorganize the fraction:
