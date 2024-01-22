@@ -4,7 +4,6 @@ import warnings
 from typing import List, Tuple, Union, Optional, Dict
 from utils import eq_system_builder
 
-
 class EquationSystem:
     def __init__(
         self,

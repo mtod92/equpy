@@ -20,12 +20,12 @@ bibliography: paper.bib
 
 # Summary
 
-Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we present straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by Thomas Wayne Wall (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (*vpasolve*) and the solver available in chempy - one of the most complete open source chemistry packages available to this date - showing a speed-up as high as two orders of magnitudes.
+Determining the distribution of multiple chemical species at equilibrium for a given system is a common problem that must be routinely addressed by scholars. While simple systems consisting of a few species and reactions can be solved manually, most of these problems require the definition and solution of higher-order equations and are intractable without reliable numerical methods, that can be slow and inefficient. In this work, we introduce straightforward Python and MATLAB implementations of the geometric-programming algorithm developed by Thomas Wayne Wall (1984) and we provide clear and easy-to-use scripts and examples for researchers approaching the problem. The performance and stability of the algorithm is tested versus out-of-the-box MATLAB numerical solver (*vpasolve*) and the solver employed in *chempy* - one of the most complete open source chemistry packages available to this date - showing an execution time reduced by as much as two orders of magnitudes.
 
 # Statement of need
 
-`equpy` is a Python package specialized in solving multiple chemical equilibria.
-`equpy` was designed to provide a user-friendly experience for a class-based
+`equpy` is a package specialized in solving multiple chemical equilibria.
+`equpy` was designed to provide a user-friendly experience for a modern
 implementations of the algorithm developed by Thomas Wayne Wall to handle the
 solution of mixed linear/non-linear systems of equations describing the simultaneous
 equilibration of multiple species reacting in a close system. `equpy` relies 
@@ -85,9 +85,9 @@ In a system with *n* different species $X_{1…n}$, the mass conservation relati
 a_1[X_1] + a_2[X_2] + ... + a_n[X_n] = [X_i]_{tot}
 \end{equation}
 
-Or equivalently:
+Or equivalently a summation over the species whose indexes belong to the set N = {1, 2, ..., n}:
 \begin{equation}\label{eq:7}
-\sum_{j=1}^n a_j[X_j] = [X_i]_{tot}
+\sum_{j \epsilon N} a_j[X_j] = [X_i]_{tot}
 \end{equation}
 
 With *a* for a given species that does not take part of a mass conservation relationship being equal to zero.
